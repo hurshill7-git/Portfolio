@@ -1,0 +1,165 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ *
+ * Design tokens
+ * A warm editorial system: paper ground, ink text, one accent.
+ * ------------------------------------------------------------------ */
+:root {
+  /* Neutrals (warm) */
+  --paper: #f4f2ec;
+  --paper-raised: #faf9f5;
+  --ink: #16150f;
+  --ink-soft: #3a392f;
+  --muted: #6f6e62;
+  --line: #e0ddd2;
+  --line-strong: #c9c5b6;
+
+  /* Inverted (used by the dark hero band / footer) */
+  --ink-bg: #100f0a;
+  --ink-bg-raised: #1a1913;
+  --paper-on-ink: #f4f2ec;
+  --muted-on-ink: #908e80;
+  --line-on-ink: #2b2a22;
+
+  /* Accent */
+  --accent: #d9442a;
+  --accent-soft: #f0d8cf;
+
+  /* Typography */
+  --font-display: var(--font-fraunces);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  /* Motion */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-soft: cubic-bezier(0.45, 0, 0.15, 1);
+  --dur-fast: 0.18s;
+  --dur-med: 0.5s;
+  --dur-slow: 0.9s;
+
+  /* Layout */
+  --container: 76rem; /* 1216px */
+  --gutter: clamp(1.25rem, 5vw, 4rem);
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-raised: var(--paper-raised);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+
+  --color-ink-bg: var(--ink-bg);
+  --color-ink-bg-raised: var(--ink-bg-raised);
+  --color-paper-on-ink: var(--paper-on-ink);
+  --color-muted-on-ink: var(--muted-on-ink);
+  --color-line-on-ink: var(--line-on-ink);
+
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+
+  --font-display: var(--font-display);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+
+  /* Fluid type scale */
+  --text-2xs: 0.6875rem;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: clamp(1.5rem, 1.2rem + 1.4vw, 2.25rem);
+  --text-3xl: clamp(2rem, 1.4rem + 2.6vw, 3.25rem);
+  --text-4xl: clamp(2.6rem, 1.6rem + 4.4vw, 5rem);
+  --text-5xl: clamp(3.2rem, 1.6rem + 7vw, 7.5rem);
+}
+
+/* ------------------------------------------------------------------ *
+ * Base
+ * ------------------------------------------------------------------ */
+* {
+  border-color: var(--line);
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-feature-settings: "ss01", "cv01";
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--paper-raised);
+}
+
+/* Display headings */
+.font-display {
+  font-family: var(--font-display), Georgia, serif;
+  font-optical-sizing: auto;
+  letter-spacing: -0.015em;
+  line-height: 0.98;
+}
+
+/* Eyebrow / mono label */
+.label {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Focus ring — keyboard accessible */
+:where(a, button, input, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Container helper */
+.container-x {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* Link with animated underline */
+.link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  transition: background-size var(--dur-med) var(--ease-out-expo);
+}
+.link-underline:hover {
+  background-size: 100% 1px;
+}
+
+/* ------------------------------------------------------------------ *
+ * Reduced motion — disable transitions/animations & smooth scroll
+ * ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

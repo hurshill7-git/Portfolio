@@ -1,0 +1,124 @@
+---
+title: "ZSegment — Rebuilding clarity into healthcare segmentation"
+client: "ZSegment"
+summary: "A ground-up UX redesign of a B2B healthcare SaaS platform that helps care teams segment patient populations — turning a dense, expert-only tool into something a new analyst can use on day one."
+role: "Lead Product Designer"
+team: "1 PM · 3 engineers · 1 designer (me)"
+timeline: "2024 · 4 months"
+platform: "Responsive web app"
+tags: ["Product Design", "UX", "Design Systems", "Healthcare"]
+cover: ""
+impact: "Cut the time to build a patient segment from minutes of trial-and-error to a guided, confident flow."
+featured: true
+order: 1
+metrics:
+  - value: "−40%"
+    label: "Time to build a segment*"
+  - value: "+22"
+    label: "SUS usability score*"
+  - value: "1 day"
+    label: "New-analyst ramp, down from a week*"
+published: true
+---
+
+<Section eyebrow="01 — Context" title="A powerful tool only experts could drive">
+
+ZSegment lets healthcare organizations slice patient populations by hundreds of
+clinical and demographic criteria — the engine behind care-gap programs, outreach
+campaigns, and risk analysis. The logic was best-in-class. The experience was not.
+
+Analysts built segments by stacking raw query conditions with little feedback on
+what they were doing or whether it was right. Onboarding took a week of
+hand-holding, and even seasoned users second-guessed their results.
+
+<Callout>
+The product wasn&apos;t missing features. It was missing a mental model — a way to
+*see* the population narrowing as you reasoned about it.
+</Callout>
+
+</Section>
+
+<Section eyebrow="02 — My role" title="What I owned">
+
+I led design end-to-end: discovery interviews, the IA rework, interaction model,
+the visual system, and the working relationship with PM and engineering. I ran
+weekly critiques and paired with engineers through build to protect the details.
+
+- Framed the problem and aligned the team on success metrics
+- Designed the segmentation builder, results view, and component library
+- Established the design tokens and patterns the wider product now reuses
+
+</Section>
+
+<Section eyebrow="03 — Research" title="Where people got stuck">
+
+I shadowed five analysts and mapped every step of building a real segment. Three
+patterns showed up again and again.
+
+1. **No sense of progress.** Adding a condition gave no feedback on population size.
+2. **Fear of mistakes.** Irreversible actions and cryptic errors made people cautious.
+3. **Expert-only language.** Labels assumed deep domain fluency new hires didn&apos;t have.
+
+<Figure
+  alt="Journey map of the legacy segmentation flow with friction points highlighted"
+  caption="Journey map — friction concentrated at the moment of adding logic without feedback."
+  aspect="wide"
+/>
+
+</Section>
+
+<Section eyebrow="04 — Explorations" title="Making the population visible">
+
+The core bet: turn an abstract query into a living, narrowing population you can
+watch respond to every decision. I explored three directions — a wizard, a
+canvas, and an inline builder with a persistent live count — and tested low-fi
+versions with analysts.
+
+The inline builder won. It kept power users fast while giving newcomers
+continuous feedback and safe, reversible edits.
+
+<Gallery cols={3}>
+  <Figure alt="Wizard exploration" aspect="portrait" />
+  <Figure alt="Canvas exploration" aspect="portrait" />
+  <Figure alt="Inline builder exploration" aspect="portrait" />
+</Gallery>
+
+</Section>
+
+<Section eyebrow="05 — Solution" title="A guided builder with a live population">
+
+Every condition now updates a live count and distribution. Plain-language
+summaries restate the logic in a sentence. Destructive actions are reversible, and
+the empty state teaches the model instead of staring back blankly.
+
+<Figure
+  alt="Final segmentation builder with live population panel"
+  caption="The builder: conditions on the left, a live, narrowing population on the right."
+  aspect="video"
+  bleed
+/>
+
+<BeforeAfter beforeAlt="Legacy query stack" afterAlt="Redesigned guided builder" />
+
+</Section>
+
+<Section eyebrow="06 — Impact" title="Results">
+
+<Metrics>
+  <Metric value="−40%" label="Median time to build a segment*" />
+  <Metric value="+22" label="Increase in SUS usability score*" />
+  <Metric value="1 day" label="New-analyst ramp, from ~1 week*" />
+  <Metric value="12" label="Reusable components shipped to the system" />
+</Metrics>
+
+*Figures are placeholders — swap in the measured results from your study.*
+
+</Section>
+
+<Section eyebrow="07 — Reflection" title="What I&apos;d carry forward">
+
+The unlock wasn&apos;t a feature; it was feedback. Once people could *see* the
+population respond, confidence followed. If I revisited this, I&apos;d invest next in
+saved segment templates and a lightweight audit trail for compliance reviews.
+
+</Section>
