@@ -12,7 +12,7 @@ export const site = {
   location: "Bangalore, India",
   email: "hurshill7@gmail.com",
   phone: "+91 62616 33569",
-  url: "https://harshilmalakar.com",
+  url: "https://harshil-malakar.vercel.app",
   // Downloadable PDF (add the file at /public/resume.pdf); the /resume page renders the live version.
   resume: "/resume.pdf",
   socials: {
