@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { Hero } from "@/components/hero/Hero";
 import { Container } from "@/components/ui/Container";
-import { Reveal } from "@/components/ui/Reveal";
+import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
+import { ScrollTextReveal } from "@/components/interactions/ScrollTextReveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ProjectCard } from "@/components/work/ProjectCard";
+import { Testimonials } from "@/components/home/Testimonials";
 import { Tag } from "@/components/ui/Tag";
 import { Button } from "@/components/ui/Button";
 import { getFeaturedWork } from "@/lib/work";
@@ -20,20 +22,20 @@ export default function HomePage() {
       <Container as="section" className="py-20 md:py-28">
         <SectionHeading
           eyebrow="Selected work"
-          title="A few things I've shipped"
+          title="Work I'd show you over coffee"
           aside={
             <Link href="/work" className="link-underline">
               View all work ↗
             </Link>
           }
         />
-        <div className="mt-12 grid gap-x-8 gap-y-16 md:mt-16 md:grid-cols-2">
+        <RevealGroup className="mt-12 grid gap-x-8 gap-y-16 md:mt-16 md:grid-cols-2">
           {featured.map((w, i) => (
-            <Reveal key={w.slug} delay={i * 0.05}>
+            <RevealItem key={w.slug}>
               <ProjectCard work={w} priority={i === 0} />
-            </Reveal>
+            </RevealItem>
           ))}
-        </div>
+        </RevealGroup>
       </Container>
 
       {/* About teaser */}
@@ -44,13 +46,10 @@ export default function HomePage() {
               <p className="label">About</p>
             </Reveal>
             <div className="md:col-span-9">
-              <Reveal>
-                <p className="font-display text-2xl leading-snug text-ink md:text-3xl">
-                  I&apos;m {site.shortName}, an experience designer at 314e Corp.
-                  I work across product, brand, and motion — happiest when a hard
-                  problem gets simple enough that it just makes sense.
-                </p>
-              </Reveal>
+              <ScrollTextReveal
+                className="font-display text-2xl leading-snug text-ink md:text-3xl"
+                text={`I'm ${site.shortName}, an experience designer at 314e Corp. Most days I'm making dense health-tech software make sense to the people who live in it. The rest of the time I'm deep in brand, motion, or a 3D rabbit hole. Happiest when a hard problem gets simple enough that it just clicks.`}
+              />
               <Reveal delay={0.1}>
                 <div className="mt-8">
                   <Button href="/about" variant="outline">
@@ -63,12 +62,15 @@ export default function HomePage() {
         </Container>
       </section>
 
+      {/* What people say */}
+      <Testimonials />
+
       {/* Toolkit */}
       <section className="border-t border-line py-20 md:py-28">
         <Container>
           <div className="grid gap-10 md:grid-cols-12">
             <Reveal className="md:col-span-3">
-              <p className="label">Toolkit</p>
+              <p className="label">What I build with</p>
             </Reveal>
             <Reveal className="md:col-span-9">
               <ul className="flex flex-wrap gap-3">
@@ -89,9 +91,9 @@ export default function HomePage() {
           <Reveal>
             <p className="label mb-6">Available for new work</p>
             <h2 className="font-display text-4xl text-ink">
-              Let&apos;s create a better
+              Got something complex?
               <br />
-              experience together.
+              Let&apos;s make it simple.
             </h2>
             <div className="mt-10 flex justify-center">
               <Button href={`mailto:${site.email}`}>{site.email}</Button>

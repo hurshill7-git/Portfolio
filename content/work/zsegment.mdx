@@ -1,124 +1,131 @@
 ---
-title: "ZSegment — Rebuilding clarity into healthcare segmentation"
+title: "The Screen That Made New Hires Cry — ZSegment"
 client: "ZSegment"
-summary: "A ground-up UX redesign of a B2B healthcare SaaS platform that helps care teams segment patient populations — turning a dense, expert-only tool into something a new analyst can use on day one."
-role: "Lead Product Designer"
-team: "1 PM · 3 engineers · 1 designer (me)"
-timeline: "2024 · 4 months"
-platform: "Responsive web app"
-tags: ["Product Design", "UX", "Design Systems", "Healthcare"]
-cover: ""
-impact: "Cut the time to build a patient segment from minutes of trial-and-error to a guided, confident flow."
+summary: "A three-year arc fixing a powerful but bewildering healthcare tool. I turned a screen that made new hires want to cry into one they could actually navigate on day one."
+role: "Sole Product Designer (research, IA, interaction, visual, dev handoff)"
+team: "PM Soumya Agrawal; engineers Harish, Aravindhan, Kesav"
+timeline: "June 2023 to June 2026"
+platform: "Web app (Figma, Ant Design)"
+tags: ["Product Design", "Design Systems", "Healthcare"]
+cover: "/work/zsegment/cover.png"
+impact: "Took a fragmented, expert-only tool and made it a coherent system operators could trust."
 featured: true
-order: 1
+order: 4
 metrics:
-  - value: "−40%"
-    label: "Time to build a segment*"
-  - value: "+22"
-    label: "SUS usability score*"
-  - value: "1 day"
-    label: "New-analyst ramp, down from a week*"
+  - value: "8"
+    label: "Healthcare systems in production"
+  - value: "85%"
+    label: "Adopted the new save-view feature"
+  - value: "3x"
+    label: "Faster to find message segments"
 published: true
 ---
 
-<Section eyebrow="01 — Context" title="A powerful tool only experts could drive">
+<Section eyebrow="01 · Context & problem" title="A brilliant engine with a baffling dashboard">
 
-ZSegment lets healthcare organizations slice patient populations by hundreds of
-clinical and demographic criteria — the engine behind care-gap programs, outreach
-campaigns, and risk analysis. The logic was best-in-class. The experience was not.
+ZSegment is heavy-duty software, and the engine under it was genuinely good. The experience on top of it was not. Filters lived in two different places, so people never knew which to use. Empty screens told you nothing. Icons came from three different families that had clearly never met. Whole areas, like billing, had no real design at all.
 
-Analysts built segments by stacking raw query conditions with little feedback on
-what they were doing or whether it was right. Onboarding took a week of
-hand-holding, and even seasoned users second-guessed their results.
+<InPlainTerms>
+Think of ZSegment as the plumbing that lets a hospital's many computer systems talk to each other and move patient data around safely. The people using it ("operators") spend all day routing and checking that data. My job was the dashboard they stare at, not the pipes themselves.
+</InPlainTerms>
+
+The result was predictable: extra clicks, support tickets full of "where do I click?", and a first week on the job that every new operator spent quietly lost.
 
 <Callout>
-The product wasn&apos;t missing features. It was missing a mental model — a way to
-*see* the population narrowing as you reasoned about it.
+The product was not missing features. It was missing a mental model, a way to actually understand what you were looking at.
 </Callout>
 
 </Section>
 
-<Section eyebrow="02 — My role" title="What I owned">
+<Section eyebrow="02 · Role & process" title="Sole designer, soup to nuts">
 
-I led design end-to-end: discovery interviews, the IA rework, interaction model,
-the visual system, and the working relationship with PM and engineering. I ran
-weekly critiques and paired with engineers through build to protect the details.
+I owned research, information architecture (how the product is organized and labeled), interaction, and visual design, and I designed the marketing site and comparison page too.
 
-- Framed the problem and aligned the team on success metrics
-- Designed the segmentation builder, results view, and component library
-- Established the design tokens and patterns the wider product now reuses
-
-</Section>
-
-<Section eyebrow="03 — Research" title="Where people got stuck">
-
-I shadowed five analysts and mapped every step of building a real segment. Three
-patterns showed up again and again.
-
-1. **No sense of progress.** Adding a condition gave no feedback on population size.
-2. **Fear of mistakes.** Irreversible actions and cryptic errors made people cautious.
-3. **Expert-only language.** Labels assumed deep domain fluency new hires didn&apos;t have.
-
-<Figure
-  alt="Journey map of the legacy segmentation flow with friction points highlighted"
-  caption="Journey map — friction concentrated at the moment of adding logic without feedback."
-  aspect="wide"
-/>
+1. **Research and alignment.** Ran a user-persona study with PM Soumya and walked through the product flow by flow with PM and engineers.
+2. **Information architecture.** Rebuilt the menu and navigation with the engineering leads, and wrote out the user flow before drawing a single screen.
+3. **Design system.** Standardized a single 16x16 icon set, fixed the typography rules, and turned error and empty states into one consistent system.
+4. **Iteration.** Tested with internal stakeholders and refined.
 
 </Section>
 
-<Section eyebrow="04 — Explorations" title="Making the population visible">
+<Section eyebrow="03 · Key decisions" title="Three decisions that removed the confusion">
 
-The core bet: turn an abstract query into a living, narrowing population you can
-watch respond to every decision. I explored three directions — a wizard, a
-canvas, and an inline builder with a persistent live count — and tested low-fi
-versions with analysts.
+<Decision n="01" title="Put all the filters in one place">
 
-The inline builder won. It kept power users fast while giving newcomers
-continuous feedback and safe, reversible edits.
+**What.** Moved every filter into the left sidebar instead of splitting them between the table header and the sidebar.
 
-<Gallery cols={3}>
-  <Figure alt="Wizard exploration" aspect="portrait" />
-  <Figure alt="Canvas exploration" aspect="portrait" />
-  <Figure alt="Inline builder exploration" aspect="portrait" />
-</Gallery>
+**Why.** Dense tables need one source of truth. With filters in two spots, people set one, missed the other, and ran half a query without realizing it.
+
+**Tradeoff.** A wider sidebar leaves less room for the table, which gets tight on small monitors.
+
+**Result.** Operators told us filtering finally makes sense, and the "where are the filters?" tickets stopped.
+
+</Decision>
+
+<Decision n="02" title="Rebuilt the screen people live in">
+
+**What.** Redesigned the messages module (where operators spend most of their day). One search bar instead of a confusing "basic vs advanced" split, filters on top of the table, a save-view button, and the important data promoted up so it is not buried three taps deep.
+
+<InPlainTerms>
+A "message" here is a packet of patient data moving between systems, and a "segment" is one field inside it (like a date or an ID). Operators dig through these all day, so every extra tap is a tiny tax on their time.
+</InPlainTerms>
+
+**Why.** Roughly 60% of an operator's day is in this one screen. The old version hid the useful bits and made people re-type the same query every morning like a bad Groundhog Day loop.
+
+**Tradeoff.** Expanding the segments leaves the message body less room, which we softened by letting people collapse it.
+
+**Result.** Operators find segments about 3x faster, 85% of them adopted the save-view feature within two weeks, and "where is this in the drawer?" tickets dropped to zero.
+
+</Decision>
+
+<Decision n="03" title="Designed five honest empty states">
+
+**What.** Built a distinct empty state for every "nothing here yet" moment (no interface defined, no source data, no targets, no messages, no schema selected).
+
+**Why.** The old product just showed a blank screen, which left people wondering if they broke something, if data was still loading, or if the feature even applied to them.
+
+**Tradeoff.** Five states take time to design, but once defined, engineers reused the pattern everywhere.
+
+**Result.** Confusion tickets fell. One operator put it best: "Now I know what to do next instead of feeling lost."
+
+</Decision>
 
 </Section>
 
-<Section eyebrow="05 — Solution" title="A guided builder with a live population">
+<Section eyebrow="04 · Solution & artifacts" title="The restructured product">
 
-Every condition now updates a live count and distribution. Plain-language
-summaries restate the logic in a sentence. Destructive actions are reversible, and
-the empty state teaches the model instead of staring back blankly.
+- Redesigned navigation and information architecture
+- A reworked messages module with a cleaner drawer and one unified search
+- A complete five-state empty-state system
+- One standardized 16x16 icon set, used product-wide
+- Billing, subscription, and environment-settings flows
+- Onboarding screens for new operators
+- The marketing site, a "ZSegment vs Mirth Connect" comparison page, and a 3D product visual
 
-<Figure
-  alt="Final segmentation builder with live population panel"
-  caption="The builder: conditions on the left, a live, narrowing population on the right."
-  aspect="video"
-  bleed
-/>
+<InPlainTerms>
+Mirth Connect is the older, well-known competitor in this space. The comparison page is simply the "here is why we are easier to live with" pitch.
+</InPlainTerms>
 
-<BeforeAfter beforeAlt="Legacy query stack" afterAlt="Redesigned guided builder" />
+<Figure alt="Redesigned messages module and drawer" caption="The messages module: unified search, filters on top, and a save-view." aspect="video" bleed />
 
 </Section>
 
-<Section eyebrow="06 — Impact" title="Results">
+<Section eyebrow="05 · Impact" title="In production across 8 health systems">
 
 <Metrics>
-  <Metric value="−40%" label="Median time to build a segment*" />
-  <Metric value="+22" label="Increase in SUS usability score*" />
-  <Metric value="1 day" label="New-analyst ramp, from ~1 week*" />
-  <Metric value="12" label="Reusable components shipped to the system" />
+  <Metric value="8" label="Healthcare systems live" />
+  <Metric value="85%" label="Adopted save-view in 2 weeks" />
+  <Metric value="3x" label="Faster to find segments" />
 </Metrics>
 
-*Figures are placeholders — swap in the measured results from your study.*
+Live across systems including UTMB (54%), LCMC (17%), SamHealth (10%), and BryanHealth (5%). Across early-2026 support data, the "UX confusion" category of tickets shrank as the redesigns shipped, with the leftover volume shifting toward bugs and feature requests instead of "where do I click?"
 
 </Section>
 
-<Section eyebrow="07 — Reflection" title="What I&apos;d carry forward">
+<Section eyebrow="06 · Reflection" title="Design systems compound">
 
-The unlock wasn&apos;t a feature; it was feedback. Once people could *see* the
-population respond, confidence followed. If I revisited this, I&apos;d invest next in
-saved segment templates and a lightweight audit trail for compliance reviews.
+One icon or one filter pattern sounds trivial. Multiplied across hundreds of dense screens, that consistency becomes a usability multiplier. I would build the system even earlier next time.
+
+Owning everything from the product UI to the marketing site taught me they reinforce each other: the clarity I designed into the messages module became a literal selling point in the pitch. And "I actually understand the drawer now" validated the work as much as any chart could.
 
 </Section>

@@ -1,0 +1,115 @@
+---
+title: "AI Video That Doesn't Look Like AI — Generative Video Workflow"
+client: "314e Corp"
+summary: "I wanted cinematic, fully-generated video without the usual AI mess, so I chained image, video, and voice models into one process: transcript in, a finished, voice-synced film out in three days."
+role: "Designer-Builder (workflow design, generation, edit)"
+team: "Solo"
+timeline: "2026"
+platform: "Freepik Spaces, Google image gen, Veo 3, Grok, ElevenLabs, Premiere Pro"
+tags: ["AI", "Video", "Motion Design"]
+cover: "/work/generative-video/cover.png"
+impact: "A finished, high-quality video from a transcript in three days, by stitching image, video, and voice models into one repeatable workflow."
+featured: true
+order: 3
+metrics:
+  - value: "3 days"
+    label: "Per-video turnaround"
+  - value: "6"
+    label: "Tools, one pipeline"
+  - value: "1"
+    label: "Shipped (new process)"
+published: true
+---
+
+<Section eyebrow="01 · Context & problem" title="Generated video usually looks generated">
+
+AI video is fast and almost always obvious. Text on screen melts into nonsense, shots drift in ways nobody asked for, and the voice never quite lands on the picture. The shortcut that was supposed to save time produces something you cannot actually ship. I wanted the speed of generation without the tell-tale mess, so the output would pass as real, intentional video.
+
+<InPlainTerms>
+"AI breakage" is the garble you get when a model invents letters, faces, or motion it does not understand. The trick is not one magic tool, it is picking the right model for each job and controlling what you hand it.
+</InPlainTerms>
+
+So I treated it as a workflow problem. Instead of asking one tool to do everything, I broke the job into stages and chose the best model for each.
+
+</Section>
+
+<Section eyebrow="02 · Role & process" title="From transcript to finished film, stage by stage">
+
+I designed the chain, ran every stage, and assembled the result by hand.
+
+1. Broke the transcript down into a sequence of image prompts, one per shot
+2. Generated the frames in Freepik Spaces, using Google's image generator for any shot with on-screen text so the words stayed legible
+3. Turned each frame into motion with Google Veo 3 and Grok, feeding the generator a first and last frame to control the shot
+4. Generated the voiceover with ElevenLabs
+5. Cut everything together in Premiere Pro, nudging clip pace up or down to lock the visuals to the voice
+
+</Section>
+
+<Section eyebrow="03 · Key decisions" title="Three calls that kept the seams hidden">
+
+<Decision n="01" title="Storyboard in images before touching video">
+
+**What.** I broke the transcript into discrete image prompts and generated still frames first, then animated them, rather than prompting for video directly.
+
+**Why.** Stills are cheap to judge and re-roll. Locking the look frame by frame meant the composition was already right before I spent time on motion, where mistakes are far more expensive to fix.
+
+**Tradeoff.** It is more steps than typing one video prompt and hoping.
+
+**Result.** Every shot was art-directed as a still first, so the final film looked deliberate instead of dreamed-up.
+
+</Decision>
+
+<Decision n="02" title="Pick the model that gets text right">
+
+**What.** For any frame with words on screen, I generated it with Google's image generator inside Freepik rather than the default model.
+
+**Why.** Garbled on-screen text is the single fastest way to out a video as AI-made. Choosing the model that renders legible type killed that tell before it could happen.
+
+**Tradeoff.** Bouncing between models per shot instead of staying in one.
+
+**Result.** On-screen text stayed readable and real, so nothing in the frame screamed "generated."
+
+</Decision>
+
+<Decision n="03" title="Control motion with first and last frames">
+
+**What.** For the image-to-video step I handed the generator both the opening and closing frame of each shot and let it fill the motion between them, using Veo 3 and Grok.
+
+**Why.** Left alone, video models wander. Pinning the start and end gave me a clip that began and ended exactly where I needed, so the next shot connected cleanly.
+
+**Tradeoff.** Preparing two anchor frames per shot is more setup than a single prompt.
+
+**Result.** Clips cut together without drift, and the sequence held continuity across the whole video.
+
+</Decision>
+
+</Section>
+
+<Section eyebrow="04 · Solution & artifacts" title="One pipeline, six tools">
+
+The workflow runs end to end: the **transcript** becomes a list of image prompts, **Freepik Spaces** (with **Google's image generator** for text-heavy frames) produces the stills, **Veo 3** and **Grok** animate each frame from a first/last keyframe, **ElevenLabs** voices the script, and **Premiere Pro** assembles it all, where I stretch or compress clip pace to sync picture to voice. The result is a high-quality video that does not look generated.
+
+<Gallery cols={2}>
+  <Figure alt="Transcript broken into per-shot image prompts and generated stills" aspect="video" />
+  <Figure alt="First/last-frame keyframing for the image-to-video step" aspect="video" />
+</Gallery>
+
+</Section>
+
+<Section eyebrow="05 · Impact" title="Three days, end to end">
+
+<Metrics>
+  <Metric value="3 days" label="Per-video turnaround" />
+  <Metric value="6" label="Tools, one pipeline" />
+  <Metric value="1" label="Shipped (new process)" />
+</Metrics>
+
+The first video made with this process went from transcript to finished film in three days, at a quality I would actually put in front of a client. I worked the method out recently and have shipped one video with it so far; the point of writing it down as a pipeline is that the second one will be faster than the first.
+
+</Section>
+
+<Section eyebrow="06 · Reflection" title="What I'd carry forward">
+
+The lesson was that "AI video" is not one button, it is a chain of small, deliberate choices: storyboard in stills, pick the model that gets text right, anchor every shot with its first and last frame. Doing the assembly in Premiere by hand is the part I would automate next, so the three days collapse further without giving up the control that keeps the output from looking generated.
+
+</Section>

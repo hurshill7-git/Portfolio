@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Class-based dark mode (toggled by adding `.dark` to <html>). */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* ------------------------------------------------------------------ *
  * Design tokens
  * A warm editorial system: paper ground, ink text, one accent.
@@ -40,6 +43,27 @@
   /* Layout */
   --container: 76rem; /* 1216px */
   --gutter: clamp(1.25rem, 5vw, 4rem);
+}
+
+/* Dark theme — redefine the semantic tokens; components flip automatically. */
+.dark {
+  --paper: #100f0a;
+  --paper-raised: #1a1913;
+  --ink: #f3f1e9;
+  --ink-soft: #cfccbf;
+  --muted: #918f81;
+  --line: #2a2922;
+  --line-strong: #3a392f;
+
+  /* The "ink band" (hero/footer) goes a touch darker so it still reads as distinct. */
+  --ink-bg: #0a0906;
+  --ink-bg-raised: #15140e;
+  --paper-on-ink: #f3f1e9;
+  --muted-on-ink: #918f81;
+  --line-on-ink: #2a2922;
+
+  --accent: #ef5d3f;
+  --accent-soft: #3a201a;
 }
 
 @theme inline {
@@ -120,6 +144,55 @@ body {
   color: var(--muted);
 }
 
+/* Testimonial marquee — continuous horizontal auto-scroll, pause on hover.
+   Seamless loop: the track holds two identical copies and translates -50%;
+   each card owns its trailing margin (no flex gap) so the seam is exact. */
+.marquee {
+  position: relative;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 6%,
+    #000 94%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 6%,
+    #000 94%,
+    transparent
+  );
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee var(--marquee-duration, 48s) linear infinite;
+  will-change: transform;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  .marquee-track {
+    animation: none;
+  }
+}
+
 /* Focus ring — keyboard accessible */
 :where(a, button, input, textarea, [tabindex]):focus-visible {
   outline: 2px solid var(--accent);
@@ -133,6 +206,94 @@ body {
   max-width: var(--container);
   margin-inline: auto;
   padding-inline: var(--gutter);
+}
+
+/* Tighten paragraph rhythm inside Decision cards */
+.decision-body p {
+  margin-block: 0.55rem;
+  font-size: var(--text-base);
+}
+.decision-body p:first-child {
+  margin-top: 0;
+}
+.decision-body strong {
+  color: var(--ink);
+}
+
+/* "In plain terms" callout body — drop the default large paragraph margins */
+.plain-body p {
+  margin-block: 0.4rem;
+}
+.plain-body p:first-child {
+  margin-top: 0;
+}
+.plain-body p:last-child {
+  margin-bottom: 0;
+}
+
+/* Hint native UI (scrollbars, form controls) to match the theme */
+:root {
+  color-scheme: light;
+}
+.dark {
+  color-scheme: dark;
+}
+
+/* ------------------------------------------------------------------ *
+ * Custom cursor (mounted only on fine-pointer, motion-allowed devices)
+ * ------------------------------------------------------------------ */
+html.has-custom-cursor,
+html.has-custom-cursor * {
+  cursor: none !important;
+}
+
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 10px;
+  height: 10px;
+  margin: -5px 0 0 -5px;
+  border-radius: 9999px;
+  pointer-events: none;
+  background: #fff;
+  /* White + difference blend keeps the dot visible over light and dark sections */
+  mix-blend-mode: difference;
+  will-change: transform;
+  transition: background-color 0.25s ease;
+}
+/* Hover over CTAs: the dot grows (via Motion scale) and turns accent */
+.cursor-dot.is-hover {
+  mix-blend-mode: normal;
+  background: var(--accent);
+}
+
+/* ------------------------------------------------------------------ *
+ * 3D card tilt + specular highlight
+ * ------------------------------------------------------------------ */
+.tilt {
+  position: relative;
+  transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transform-style: preserve-3d;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+.tilt-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background: radial-gradient(
+    22rem circle at var(--mx, 50%) var(--my, 50%),
+    rgba(255, 255, 255, 0.22),
+    transparent 45%
+  );
+}
+.tilt:hover .tilt-glow {
+  opacity: 1;
 }
 
 /* Link with animated underline */
@@ -161,5 +322,57 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Print — used by the "Download PDF" button (window.print) on /resume.
+ * Forces a clean light layout regardless of theme, and strips chrome.
+ * ------------------------------------------------------------------ */
+@media print {
+  /* Always print light, even if dark mode is on */
+  :root,
+  .dark {
+    --paper: #ffffff;
+    --paper-raised: #ffffff;
+    --ink: #111111;
+    --ink-soft: #2c2c2c;
+    --muted: #555555;
+    --line: #dddddd;
+    --line-strong: #c8c8c8;
+    color-scheme: light;
+  }
+
+  body {
+    background: #fff;
+  }
+
+  /* Strip site chrome and on-screen-only actions */
+  header,
+  footer,
+  .no-print {
+    display: none !important;
+  }
+
+  main {
+    padding: 0 !important;
+  }
+
+  /* Keep entries from splitting awkwardly across pages */
+  li {
+    break-inside: avoid;
+  }
+  h2,
+  h3 {
+    break-after: avoid;
+  }
+
+  /* Print accent bullets/labels reliably, and force scroll-reveal content
+     visible even if a section was never scrolled into view */
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    opacity: 1 !important;
+    transform: none !important;
   }
 }

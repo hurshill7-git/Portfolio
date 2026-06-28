@@ -4,12 +4,13 @@ import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
 import { MediaFrame } from "@/components/ui/MediaFrame";
 import { Tag } from "@/components/ui/Tag";
-import { bio, experience, skills, beyond } from "@/lib/about";
+import { bio, beyond } from "@/lib/about";
+import { experience, skillGroups } from "@/lib/resume";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "About",
-  description: `About ${site.name} — ${site.role} based in ${site.location}.`,
+  description: `About ${site.name}, ${site.role} based in ${site.location}.`,
 };
 
 export default function AboutPage() {
@@ -34,10 +35,8 @@ export default function AboutPage() {
             </div>
             <Reveal delay={0.2}>
               <div className="mt-8 flex flex-wrap gap-4">
-                <Button href={site.resume} external>
-                  Download résumé
-                </Button>
-                <Button href={`mailto:${site.email}`} variant="outline">
+                <Button href="/resume">View résumé</Button>
+                <Button href={site.socials.linkedin} external variant="outline">
                   Get in touch
                 </Button>
               </div>
@@ -47,9 +46,10 @@ export default function AboutPage() {
           <div className="md:col-span-5">
             <Reveal delay={0.1}>
               <MediaFrame
+                src="/portrait-hr.png"
                 alt={`Portrait of ${site.name}`}
                 aspect="portrait"
-                label="Portrait — /public/portrait.jpg"
+                sizes="(min-width: 768px) 40vw, 100vw"
               />
             </Reveal>
           </div>
@@ -75,7 +75,7 @@ export default function AboutPage() {
                         {e.role} ·{" "}
                         <span className="text-muted">{e.org}</span>
                       </h3>
-                      <p className="mt-2 max-w-2xl text-ink-soft">{e.detail}</p>
+                      <p className="mt-2 max-w-2xl text-ink-soft">{e.summary}</p>
                     </div>
                   </div>
                 </Reveal>
@@ -93,7 +93,7 @@ export default function AboutPage() {
               <h2 className="label">Capabilities</h2>
             </Reveal>
             <div className="grid gap-10 md:col-span-9 md:grid-cols-3">
-              {skills.map((s, i) => (
+              {skillGroups.map((s, i) => (
                 <Reveal key={s.group} delay={i * 0.06}>
                   <h3 className="mb-4 font-display text-xl text-ink">
                     {s.group}
@@ -127,7 +127,7 @@ export default function AboutPage() {
                 <MediaFrame
                   alt={b.title}
                   aspect="portrait"
-                  label={`${b.title} — add visuals`}
+                  label={`${b.title}: add visuals`}
                 />
                 <div className="mt-3 flex items-center justify-between">
                   <p className="text-sm text-ink">{b.title}</p>

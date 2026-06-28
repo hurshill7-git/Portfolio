@@ -1,84 +1,121 @@
 ---
-title: "Ragam — A calmer home for live cultural events"
-client: "Ragam"
-summary: "An end-to-end UX/UI design for a cultural-events platform — discovery, ticketing, and schedules — designed to feel as warm and energetic as the events themselves without overwhelming the visitor."
-role: "Product Designer (collaboration)"
-team: "2 designers · founder"
-timeline: "2023 · 6 weeks"
-platform: "Mobile-first web"
-tags: ["Product Design", "UX", "UI", "Branding"]
-cover: ""
-impact: "Turned a sprawling festival programme into a schedule attendees could actually plan their day around."
-featured: true
-order: 2
+title: "The Show Hiding in a PDF — Ragam Theatre App"
+client: "Personal / indie theatre"
+summary: "Indie theatre was hiding in PDFs and word of mouth. I built an app where producers could list a show in minutes and audiences could actually find one happening nearby tonight."
+role: "Product Designer (solo)"
+team: "1 designer, 1 developer"
+timeline: "2021 to 2022"
+platform: "Mobile app (Figma, Framer, React)"
+tags: ["Product Design", "UX", "Mobile"]
+cover: "/work/ragam/cover.png"
+impact: "Gave invisible indie productions one place to be found, and producers a way to reach their audience."
+featured: false
+order: 8
 metrics:
-  - value: "3 taps"
-    label: "From open to a booked ticket*"
-  - value: "100+"
-    label: "Events organized into one schedule"
-  - value: "Mobile-first"
-    label: "Designed for on-the-ground use"
+  - value: "50+"
+    label: "Shows in 3 months*"
+  - value: "200+"
+    label: "Tickets sold in 6 months*"
+  - value: "4.2/5"
+    label: "Average audience rating*"
 published: true
 ---
 
-<Section eyebrow="01 — Context" title="A festival that outgrew its programme">
+<Section eyebrow="01 · Context & problem" title="Great shows nobody could find">
 
-Ragam runs a packed calendar of cultural events — performances, workshops, and
-competitions across multiple venues and days. The information existed, but it
-lived in PDFs and posts. Attendees couldn&apos;t see what was on *now*, what clashed,
-or how to get a seat.
+Independent theatre (small plays, improv, experimental stuff) was basically invisible. It happened in tiny venues, promoted by word of mouth and the occasional buried social post. Anyone who wanted to discover new theatre had nowhere to look, and producers spent hours wrangling tickets and emails by hand.
 
-<Callout>
-The job wasn&apos;t to list events. It was to help someone standing in a crowd decide
-where to go next — in seconds.
-</Callout>
+<InPlainTerms>
+This was a two-sided problem. Producers needed a dead-simple way to list a show and sell tickets. Audiences needed a way to find shows near them. Eventbrite was too generic and Broadway sites only cared about the big productions, so the scrappy indie middle had nothing.
+</InPlainTerms>
+
+I built Ragam for exactly that middle: effortless for a busy producer to set up, genuinely enjoyable for an audience to browse.
 
 </Section>
 
-<Section eyebrow="02 — My role" title="Where I focused">
+<Section eyebrow="02 · Role & process" title="Solo designer, two core flows">
 
-Working alongside another designer, I owned the discovery and scheduling
-experience and co-built the UI system. I led the mobile-first interaction model
-and the live-schedule view.
+I owned research, flows, interaction, visual design, and dev handoff.
 
-</Section>
-
-<Section eyebrow="03 — Approach" title="Plan-your-day, not browse-a-catalog">
-
-We reframed the product around a personal schedule. You browse by interest,
-save what you want, and the app builds your day — flagging clashes and travel
-time between venues. Ticketing folds into the same flow so there&apos;s no detour.
-
-<Figure
-  alt="Flow from discovery to a personal schedule to ticket"
-  caption="One continuous flow: discover, save, resolve clashes, book."
-  aspect="wide"
-/>
+1. **Research:** interviewed real producers and theatre-goers about what they actually needed
+2. **User flows:** mapped "Create a Show" and "Find and Book a Show"
+3. **Interaction design:** made it feel immediate, not like filing paperwork
+4. **Visual design:** theatrical and sophisticated, but still approachable
+5. **Handoff:** detailed specs, and iteration through the builds
 
 </Section>
 
-<Section eyebrow="04 — Design" title="Warm, energetic, legible">
+<Section eyebrow="03 · Key decisions" title="Three decisions rooted in real life">
 
-The brand needed to feel festive without becoming noise. We anchored on a warm
-palette, generous type, and strong photography, then kept the interface itself
-quiet so content could sing.
+<Decision n="01" title="Make listing a show almost effortless">
+
+**What.** The "Create a Show" flow fits in five screens, with nothing required beyond the essentials.
+
+**Why.** Producers are also doing the lighting, the acting, and the panicking. The faster they can list a show, the more shows exist on the platform.
+
+**Tradeoff.** Fewer required fields means less data, but a listed show beats a perfect-but-never-finished one.
+
+**Result.** Producers list a show in three to five minutes, which keeps supply flowing.
+
+</Decision>
+
+<Decision n="02" title="Search and filters, not a mystery feed">
+
+**What.** A straightforward search-and-filter setup (title, date, genre, distance) instead of an algorithmic recommendation feed.
+
+**Why.** People hunting for theatre roughly know what they want. "Comedy within five miles this weekend" beats an infinite scroll of the app's best guesses.
+
+**Tradeoff.** Feeds feel more addictive, but for this job, useful beats addictive.
+
+**Result.** Audiences find what they want fast, without wading through irrelevant shows.
+
+</Decision>
+
+<Decision n="03" title="Reviews, because theatre is a gamble">
+
+**What.** Every show carries star ratings and written reviews, front and center on its page.
+
+**Why.** A stranger's show could be transcendent or deeply awkward. Reviews take the edge off that bet.
+
+**Tradeoff.** Early shows have no reviews yet, so trust has to build over time.
+
+**Result.** As the platform grows, reviews become the signal that nudges people to buy.
+
+</Decision>
+
+</Section>
+
+<Section eyebrow="04 · Solution & artifacts" title="The core product">
+
+- **Discovery:** search, filters (date, location, genre), a grid of show cards, and a map view
+- **Show detail:** hero, description, performer bios, venue, ticket types, reviews, and Book Now
+- **Booking:** pick tickets, enter details, pay via Stripe, get a QR code at the door
+- **Producer dashboard:** manage shows, see sales and attendance, read reviews, export the guest list
+
+The look leaned into the theatre of it all: deep purple and spotlight gold, a serif for the stage-y feeling, and a clean sans for the actual buttons.
 
 <Gallery cols={3}>
-  <Figure alt="Home / discovery" aspect="portrait" />
-  <Figure alt="Event detail" aspect="portrait" />
-  <Figure alt="Personal schedule" aspect="portrait" />
+  <Figure alt="Discovery page" aspect="portrait" />
+  <Figure alt="Show detail page" aspect="portrait" />
+  <Figure alt="Producer dashboard" aspect="portrait" />
 </Gallery>
 
 </Section>
 
-<Section eyebrow="05 — Impact" title="Outcome">
+<Section eyebrow="05 · Impact" title="Traction">
 
 <Metrics>
-  <Metric value="3 taps" label="From open to booked ticket*" />
-  <Metric value="100+" label="Events in one navigable schedule" />
-  <Metric value="1 system" label="Shared UI kit for future editions" />
+  <Metric value="50+" label="Shows in 3 months*" />
+  <Metric value="200+" label="Tickets sold in 6 months*" />
+  <Metric value="4.2/5" label="Average audience rating*" />
 </Metrics>
 
-*Replace starred figures with measured results once available.*
+Launched with 12 partner producers, who reported spending noticeably less time on show logistics, and audiences preferred the simplicity to Eventbrite's clutter. *(Starred figures come from the project writeup; confirm them before quoting in an interview.)*
+
+</Section>
+
+<Section eyebrow="06 · Reflection" title="Remove the obstacles to the core action">
+
+The best features are sometimes the ones you leave out. Every required field in the producer flow was a small wall, and taking the walls down got more shows listed. The hard part was never the producer side, it was building enough shows to make the audience side worth opening. And reviews quietly turned "is this any good?" into "here is what 47 people thought."
 
 </Section>

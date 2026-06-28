@@ -41,20 +41,21 @@ export function Button({
           target="_blank"
           rel="noopener noreferrer"
           className={classes}
+          data-cursor="cta"
         >
           {children}
         </a>
       );
     }
     return (
-      <Link href={href} className={classes}>
+      <Link href={href} className={classes} data-cursor="cta">
         {children}
       </Link>
     );
   }
 
   return (
-    <button className={classes} {...rest}>
+    <button className={classes} data-cursor="cta" {...rest}>
       {children}
     </button>
   );

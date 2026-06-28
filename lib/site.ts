@@ -8,13 +8,15 @@ export const site = {
   role: "Experience Designer",
   // One-liner used in hero + meta description.
   tagline:
-    "Experience designer crafting clear, humane products — from B2B healthcare SaaS to brand and motion.",
-  location: "Indore, India",
-  email: "harshil.malakar@314ecorp.com",
+    "A designer who builds — across product, brand, motion, and 3D, taking the whole experience from first idea to shipped.",
+  location: "Bangalore, India",
+  email: "hurshill7@gmail.com",
+  phone: "+91 62616 33569",
   url: "https://harshilmalakar.com",
+  // Downloadable PDF (add the file at /public/resume.pdf); the /resume page renders the live version.
   resume: "/resume.pdf",
   socials: {
-    linkedin: "https://www.linkedin.com/in/harshil-malakar",
+    linkedin: "https://www.linkedin.com/in/harshill7/",
     behance: "https://www.behance.net/hurshill",
     framer: "https://harshill.framer.website",
   },
@@ -23,15 +25,24 @@ export const site = {
 export const nav = [
   { href: "/work", label: "Work" },
   { href: "/about", label: "About" },
-  { href: site.resume, label: "Résumé", external: true },
+  { href: "/resume", label: "Résumé" },
 ] as const;
 
-/** Tools surfaced in the toolkit strip (mirrors the current Framer site). */
+/** Tools surfaced in the toolkit strip — drawn from the case studies, ordered
+ *  design → 3D/web → motion/video → AI build & media. */
 export const toolkit = [
   "Figma",
   "Spline",
   "Framer",
-  "Lovable",
-  "Notion",
+  "React",
+  "Adobe Creative Suite",
   "After Effects",
+  "Premiere Pro",
+  "Claude",
+  "Remotion",
+  "ElevenLabs",
+  "HeyGen",
+  "Veo 3",
+  "Freepik",
+  "Notion",
 ] as const;

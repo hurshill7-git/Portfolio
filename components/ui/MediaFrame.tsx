@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { cn } from "@/lib/cn";
+import { ParallaxImage } from "@/components/interactions/Parallax";
 
 type Aspect = "video" | "square" | "portrait" | "wide" | "auto";
 
@@ -26,6 +27,7 @@ export function MediaFrame({
   label,
   className,
   onInk,
+  parallax,
 }: {
   src?: string;
   alt: string;
@@ -37,6 +39,8 @@ export function MediaFrame({
   label?: string;
   className?: string;
   onInk?: boolean;
+  /** Drift the image within the frame on scroll for a layered, deeper feel. */
+  parallax?: boolean;
 }) {
   return (
     <div
@@ -48,14 +52,23 @@ export function MediaFrame({
       )}
     >
       {src ? (
-        <Image
-          src={src}
-          alt={alt}
-          fill
-          sizes={sizes}
-          priority={priority}
-          className="object-cover"
-        />
+        parallax ? (
+          <ParallaxImage
+            src={src}
+            alt={alt}
+            sizes={sizes}
+            priority={priority}
+          />
+        ) : (
+          <Image
+            src={src}
+            alt={alt}
+            fill
+            sizes={sizes}
+            priority={priority}
+            className="object-cover"
+          />
+        )
       ) : (
         <Placeholder label={label ?? alt} onInk={onInk} />
       )}
@@ -71,9 +84,8 @@ function Placeholder({ label, onInk }: { label: string; onInk?: boolean }) {
         onInk ? "bg-ink-bg-raised" : "bg-paper-raised",
       )}
       style={{
-        backgroundImage: onInk
-          ? "repeating-linear-gradient(45deg, rgba(255,255,255,0.03) 0 1px, transparent 1px 14px)"
-          : "repeating-linear-gradient(45deg, rgba(0,0,0,0.035) 0 1px, transparent 1px 14px)",
+        backgroundImage:
+          "repeating-linear-gradient(45deg, color-mix(in srgb, var(--ink) 5%, transparent) 0 1px, transparent 1px 14px)",
       }}
     >
       <span

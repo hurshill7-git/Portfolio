@@ -51,6 +51,7 @@ export function Figure({
         src={src}
         alt={alt}
         aspect={aspect}
+        parallax
         sizes="(min-width: 768px) 90vw, 100vw"
       />
       {caption && (
@@ -107,12 +108,53 @@ export function BeforeAfter({
   );
 }
 
+/**
+ * Plain-English decoder. Sits near the top of a study (and at jargon moments)
+ * to explain, in normal-human language, what the product actually is or does.
+ */
+export function InPlainTerms({ children }: { children: React.ReactNode }) {
+  return (
+    <aside className="my-8 rounded-xl border border-line bg-paper-raised p-6">
+      <p className="label mb-2 flex items-center gap-2 text-accent">
+        <span aria-hidden="true">✲</span> In plain terms
+      </p>
+      <div className="plain-body text-lg leading-relaxed text-ink-soft">
+        {children}
+      </div>
+    </aside>
+  );
+}
+
 /** Highlighted aside / key insight. */
 export function Callout({ children }: { children: React.ReactNode }) {
   return (
     <aside className="my-10 border-l-2 border-accent bg-paper-raised px-6 py-5 font-display text-xl leading-snug text-ink">
       {children}
     </aside>
+  );
+}
+
+/**
+ * A "key decision" card. Author the body with bold leads inside MDX, e.g.
+ * **What** … **Why** … **Tradeoff** … **Result** …
+ */
+export function Decision({
+  n,
+  title,
+  children,
+}: {
+  n?: string;
+  title: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="my-8 rounded-xl border border-line bg-paper-raised p-6 md:p-8">
+      <div className="mb-4 flex items-baseline gap-3">
+        {n && <span className="font-mono text-xs text-accent">{n}</span>}
+        <h3 className="font-display text-xl text-ink">{title}</h3>
+      </div>
+      <div className="decision-body">{children}</div>
+    </div>
   );
 }
 
@@ -145,6 +187,8 @@ const components: MDXComponents = {
   Gallery,
   BeforeAfter,
   Callout,
+  InPlainTerms,
+  Decision,
   Metrics,
   Metric,
   h2: (props) => (

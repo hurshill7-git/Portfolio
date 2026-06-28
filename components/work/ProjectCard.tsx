@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { MediaFrame } from "@/components/ui/MediaFrame";
 import { Tag } from "@/components/ui/Tag";
+import { Tilt } from "@/components/interactions/Tilt";
 import type { WorkMeta } from "@/lib/work";
 import { cn } from "@/lib/cn";
 
@@ -20,14 +21,17 @@ export function ProjectCard({
       className="group block"
       aria-label={`View case study: ${work.title}`}
     >
-      <MediaFrame
-        src={work.cover || undefined}
-        alt={work.title}
-        aspect={size === "lg" ? "wide" : "video"}
-        priority={priority}
-        label={`${work.client ?? work.slug} — cover`}
-        className="transition-[transform,box-shadow] duration-500 ease-[var(--ease-out-expo)] group-hover:scale-[1.01] group-hover:shadow-[0_24px_60px_-32px_rgba(0,0,0,0.35)]"
-      />
+      <Tilt className="rounded-xl">
+        <MediaFrame
+          src={work.cover || undefined}
+          alt={work.title}
+          aspect={size === "lg" ? "wide" : "video"}
+          priority={priority}
+          parallax={size === "lg"}
+          label={`${work.client ?? work.slug} cover`}
+          className="transition-[box-shadow] duration-500 ease-[var(--ease-out-expo)] group-hover:shadow-[0_24px_60px_-32px_rgba(0,0,0,0.35)]"
+        />
+      </Tilt>
       <div className="mt-5 flex flex-col gap-3">
         <div className="flex items-center gap-3">
           {work.client && <p className="label">{work.client}</p>}

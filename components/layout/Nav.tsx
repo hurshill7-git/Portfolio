@@ -7,6 +7,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { nav, site } from "@/lib/site";
 import { cn } from "@/lib/cn";
 import { EASE_OUT_EXPO } from "@/lib/motion";
+import { ThemeToggle } from "@/components/layout/ThemeToggle";
 
 export function Nav() {
   const pathname = usePathname();
@@ -49,19 +50,12 @@ export function Nav() {
         {/* Desktop links */}
         <ul className="hidden items-center gap-8 md:flex">
           {nav.map((item) => {
-            const isActive =
-              !("external" in item && item.external) &&
-              pathname.startsWith(item.href);
+            const isActive = pathname.startsWith(item.href);
             return (
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  target={"external" in item && item.external ? "_blank" : undefined}
-                  rel={
-                    "external" in item && item.external
-                      ? "noopener noreferrer"
-                      : undefined
-                  }
+                  data-cursor="cta"
                   className={cn(
                     "link-underline text-sm",
                     isActive ? "text-ink" : "text-muted hover:text-ink",
@@ -70,25 +64,34 @@ export function Nav() {
                   {item.label}
                 </Link>
               </li>
+
             );
           })}
           <li>
             <a
-              href={`mailto:${site.email}`}
+              href={site.socials.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-cursor="cta"
               className="rounded-full bg-ink px-5 py-2 text-sm text-paper transition-colors hover:bg-accent"
             >
               Get in touch
             </a>
           </li>
+          <li>
+            <ThemeToggle />
+          </li>
         </ul>
 
-        {/* Mobile toggle */}
-        <button
-          className="flex h-10 w-10 items-center justify-center md:hidden"
-          aria-label={open ? "Close menu" : "Open menu"}
-          aria-expanded={open}
-          onClick={() => setOpen((v) => !v)}
-        >
+        {/* Mobile: theme toggle + menu button */}
+        <div className="flex items-center gap-2 md:hidden">
+          <ThemeToggle />
+          <button
+            className="flex h-10 w-10 items-center justify-center"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            onClick={() => setOpen((v) => !v)}
+          >
           <span className="relative block h-3 w-6">
             <span
               className={cn(
@@ -103,7 +106,8 @@ export function Nav() {
               )}
             />
           </span>
-        </button>
+          </button>
+        </div>
       </nav>
 
       {/* Mobile menu */}
@@ -121,9 +125,6 @@ export function Nav() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    target={
-                      "external" in item && item.external ? "_blank" : undefined
-                    }
                     className="block py-3 font-display text-2xl text-ink"
                   >
                     {item.label}
@@ -132,7 +133,9 @@ export function Nav() {
               ))}
               <li>
                 <a
-                  href={`mailto:${site.email}`}
+                  href={site.socials.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="block py-3 font-display text-2xl text-accent"
                 >
                   Get in touch

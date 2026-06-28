@@ -1,0 +1,115 @@
+---
+title: "Videos That Edit Themselves — Auto-Motion Pipeline"
+client: "314e Corp"
+summary: "Product explainer videos were a manual grind: record voice, hand-time captions, nudge every frame to match. I built a pipeline that takes a script and Figma frames and renders a finished, word-synced motion video on its own."
+role: "Designer-Builder (pipeline design, build, deployment)"
+team: "Solo"
+timeline: "2026"
+platform: "HeyGen Hyperframe, Remotion (VS Code), ElevenLabs API"
+tags: ["Motion Design", "AI", "0 to 1"]
+cover: "/work/auto-motion-videos/cover.png"
+impact: "Cut video turnaround from three weeks to one, so product videos ship as fast as the script is written."
+featured: true
+order: 2
+metrics:
+  - value: "3→1 wk"
+    label: "Video turnaround"
+  - value: "3×"
+    label: "Faster delivery"
+  - value: "6"
+    label: "Video projects shipped"
+published: true
+---
+
+<Section eyebrow="01 · Context & problem" title="A video is mostly waiting, not deciding">
+
+Every 314e product video followed the same slow ritual. Someone wrote a script, recorded or commissioned a voiceover, then sat in an editor lining up captions word by word and nudging each visual until it landed on the right syllable. The creative decisions took minutes; the mechanical work of voicing, captioning, and syncing stretched a single video out to about three weeks. And because it was so manual, videos were rare, inconsistent, and always the thing that slipped.
+
+<InPlainTerms>
+The hard part of a motion video usually is not the idea, it is the bookkeeping: matching the words you hear to the words on screen and to the picture behind them. That is exactly the part a machine should do.
+</InPlainTerms>
+
+I treated this as a pipeline problem, not a one-off editing favor. If the inputs were predictable (a script and some frames), the rest could be automated end to end.
+
+</Section>
+
+<Section eyebrow="02 · Role & process" title="Turn the inputs we already have into a finished video">
+
+I designed the flow, built it, and wired the tools together so a video could be generated from assets we were already making anyway.
+
+1. Found the friction (hours of manual voiceover, captioning, and frame timing per video)
+2. Designed the interaction (script and Figma frames in, finished motion video out)
+3. Built the pipeline as a Remotion project driven through a VS Code skill
+4. Generated the voice with the ElevenLabs API and the presenter frames with HeyGen Hyperframe
+5. Auto-synced captions word by word and timed the visuals to the audio, no manual scrubbing
+
+</Section>
+
+<Section eyebrow="03 · Key decisions" title="Three calls that made it hands-off">
+
+<Decision n="01" title="Script plus Figma frames as the only inputs">
+
+**What.** The pipeline takes what the team already produces, a written script and Figma frames, and asks for nothing else.
+
+**Why.** Every extra input is a reason the tool goes unused. Designers already live in Figma and scripts already get written, so building on those meant zero new busywork to feed the machine.
+
+**Tradeoff.** I had to handle messy, real-world frames and scripts rather than a tidy custom format.
+
+**Result.** Making a video starts from assets that already exist, so the cost of a new video drops to almost nothing.
+
+</Decision>
+
+<Decision n="02" title="Word-by-word sync done automatically">
+
+**What.** ElevenLabs generates the voiceover, and the pipeline aligns the transcript to the audio at the word level, then drives captions and visual timing from that alignment.
+
+**Why.** Hand-timing captions is the single most soul-crushing part of motion work. If the machine owns the timing, a human never touches a timeline.
+
+**Tradeoff.** Trusting automated alignment means occasional edge cases to tune instead of full manual control.
+
+**Result.** Captions land on the right word and visuals change on cue, with no scrubbing back and forth.
+
+</Decision>
+
+<Decision n="03" title="Programmatic video over a timeline editor">
+
+**What.** Videos are composed in Remotion (code) rather than dragged together in a traditional editor, and the whole project runs from a VS Code skill.
+
+**Why.** Code is reproducible and versionable. Change the script, re-render; tweak a brand color once, every video inherits it. A timeline editor cannot do that.
+
+**Tradeoff.** More up-front engineering than opening an editor and exporting once.
+
+**Result.** Videos became a repeatable build, not a bespoke craft project each time.
+
+</Decision>
+
+</Section>
+
+<Section eyebrow="04 · Solution & artifacts" title="Script in, synced video out">
+
+The pipeline runs as a chain: the **script** sets the words and structure, **ElevenLabs** turns it into a natural voiceover, **HeyGen Hyperframe** supplies the presenter frames, and **Remotion** composes the **Figma frames** against the audio, with captions and visual cues placed automatically from the word-level transcript. Hit render and a finished 314e product video comes out the other side.
+
+<Gallery cols={2}>
+  <Figure alt="Pipeline overview: script and Figma frames in, synced video out" aspect="video" />
+  <Figure alt="Word-by-word caption sync against the ElevenLabs voiceover" aspect="video" />
+</Gallery>
+
+</Section>
+
+<Section eyebrow="05 · Impact" title="Videos ship as fast as the script">
+
+<Metrics>
+  <Metric value="3→1 wk" label="Video turnaround" />
+  <Metric value="3×" label="Faster delivery" />
+  <Metric value="6" label="Video projects shipped" />
+</Metrics>
+
+A video that used to take three weeks now ships in one. Product videos stopped being the thing that slipped and became something we could turn around on demand.
+
+</Section>
+
+<Section eyebrow="06 · Reflection" title="What I'd carry forward">
+
+The win was refusing to treat video as a craft that has to be done by hand every time. Once I saw it as a pipeline with predictable inputs, the slow parts became code. Next I would push the alignment tuning further so even the rare mistimed word disappears, and open the skill up so a non-designer can render a video from a script alone.
+
+</Section>

@@ -1,16 +1,18 @@
 "use client";
 
 import { motion, useReducedMotion, type Variants } from "motion/react";
-import { EASE_OUT_EXPO } from "@/lib/motion";
+import { EASE_REVEAL, STAGGER } from "@/lib/motion";
 
 /**
- * Scroll-reveal wrapper. Fades + rises into view once.
- * Honors prefers-reduced-motion (renders static, no transform).
+ * Scroll-reveal wrapper. Per the motion spec: opacity 0 + translateY(30px) ->
+ * opacity 1 + translateY(0), 700ms, cubic-bezier(0.22, 1, 0.36, 1), no bounce.
+ * Only transform + opacity animate (no layout repaints). Honors
+ * prefers-reduced-motion (renders static, instant, no transform).
  */
 export function Reveal({
   children,
   delay = 0,
-  y = 24,
+  y = 30,
   as = "div",
   className,
   once = true,
@@ -30,11 +32,7 @@ export function Reveal({
     show: {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.7,
-        delay,
-        ease: EASE_OUT_EXPO,
-      },
+      transition: { duration: reduce ? 0 : 0.7, delay, ease: EASE_REVEAL },
     },
   };
 
@@ -51,25 +49,63 @@ export function Reveal({
   );
 }
 
-/** Staggered container — children using <Reveal> appear in sequence. */
+/**
+ * Staggered container — direct <RevealItem> children appear in a wave
+ * (80-120ms apart). Use for card grids / sibling lists.
+ */
 export function RevealGroup({
   children,
   className,
-  stagger = 0.08,
+  stagger = STAGGER,
+  as = "div",
 }: {
   children: React.ReactNode;
   className?: string;
   stagger?: number;
+  as?: "div" | "ul";
 }) {
+  const MotionTag = motion[as];
   return (
-    <motion.div
+    <MotionTag
       className={className}
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, margin: "-10% 0px" }}
-      transition={{ staggerChildren: stagger }}
+      variants={{
+        hidden: {},
+        show: { transition: { staggerChildren: stagger } },
+      }}
     >
       {children}
-    </motion.div>
+    </MotionTag>
+  );
+}
+
+/** Child of <RevealGroup>; inherits the parent's stagger timing. */
+export function RevealItem({
+  children,
+  className,
+  y = 30,
+  as = "div",
+}: {
+  children: React.ReactNode;
+  className?: string;
+  y?: number;
+  as?: "div" | "li";
+}) {
+  const reduce = useReducedMotion();
+  const MotionTag = motion[as];
+  const variants: Variants = {
+    hidden: { opacity: 0, y: reduce ? 0 : y },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: reduce ? 0 : 0.7, ease: EASE_REVEAL },
+    },
+  };
+  return (
+    <MotionTag className={className} variants={variants}>
+      {children}
+    </MotionTag>
   );
 }

@@ -62,6 +62,7 @@ export function CaseHero({ work }: { work: Work }) {
           alt={`${work.title} — cover`}
           aspect="wide"
           priority
+          parallax
           label={`${work.client ?? work.slug} — hero cover`}
           sizes="(min-width: 1216px) 1216px, 100vw"
         />
