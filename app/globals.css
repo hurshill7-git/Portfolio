@@ -208,16 +208,33 @@ body {
   padding-inline: var(--gutter);
 }
 
-/* Tighten paragraph rhythm inside Decision cards */
+/* Decision cards: each **Label.** paragraph becomes its own labeled row,
+   separated by a hairline, with the bold lead-in promoted to a kicker. */
 .decision-body p {
-  margin-block: 0.55rem;
+  margin: 0;
+  padding-block: 1rem;
   font-size: var(--text-base);
+  border-top: 1px solid var(--line);
 }
 .decision-body p:first-child {
-  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
 }
-.decision-body strong {
-  color: var(--ink);
+.decision-body strong:first-child {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-family: var(--font-mono), monospace;
+  font-size: var(--text-2xs);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* Artifact rows: drop the auto-wrapped paragraph's default margin so the
+   text sits flush against its numbered badge. */
+.artifact-body p {
+  margin: 0;
 }
 
 /* "In plain terms" callout body — drop the default large paragraph margins */

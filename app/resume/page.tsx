@@ -21,6 +21,7 @@ export const metadata: Metadata = {
 const contactLinks = [
   { label: "Email", value: site.email, href: `mailto:${site.email}` },
   { label: "Phone", value: site.phone, href: `tel:${site.phone.replace(/\s/g, "")}` },
+  { label: "Portfolio", value: site.url.replace(/^https?:\/\//, ""), href: site.url },
   { label: "LinkedIn", value: "in/harshill7", href: site.socials.linkedin },
   { label: "Behance", value: "behance.net/hurshill", href: site.socials.behance },
 ];
@@ -49,7 +50,7 @@ export default function ResumePage() {
 
       {/* Contact row */}
       <Reveal>
-        <dl className="grid grid-cols-2 gap-6 border-b border-line py-8 md:grid-cols-4">
+        <dl className="grid grid-cols-2 gap-6 border-b border-line py-8 md:grid-cols-5">
           {contactLinks.map((c) => (
             <div key={c.label}>
               <dt className="label mb-1">{c.label}</dt>

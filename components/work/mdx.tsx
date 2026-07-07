@@ -1,5 +1,6 @@
 import type { MDXComponents } from "mdx/types";
 import { MediaFrame } from "@/components/ui/MediaFrame";
+import { RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import { cn } from "@/lib/cn";
 
 /* ---- Case-study building blocks (usable inside MDX) ---------------- */
@@ -81,6 +82,41 @@ export function Gallery({
   );
 }
 
+/** Numbered list of shipped artifacts, each with an optional scaled screenshot
+ * directly beneath its text (rather than a separate gallery row). Items with
+ * no `image` render as text only, e.g. work still in progress. */
+export function Artifacts({ children }: { children: React.ReactNode }) {
+  return <div className="my-8 flex flex-col gap-8">{children}</div>;
+}
+
+export function Artifact({
+  n,
+  image,
+  imageAlt,
+  children,
+}: {
+  n: string;
+  image?: string;
+  imageAlt?: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="flex gap-4 md:gap-5">
+      <span className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-line-strong bg-paper font-mono text-xs text-accent">
+        {n}
+      </span>
+      <div className="artifact-body min-w-0 flex-1">
+        {children}
+        {image && (
+          <div className="mt-4 max-w-xl overflow-hidden rounded-lg border border-line md:max-w-2xl">
+            <MediaFrame src={image} alt={imageAlt ?? "Artifact screenshot"} aspect="video" />
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 /** Before / after comparison pair. */
 export function BeforeAfter({
   before,
@@ -148,13 +184,73 @@ export function Decision({
   children: React.ReactNode;
 }) {
   return (
-    <div className="my-8 rounded-xl border border-line bg-paper-raised p-6 md:p-8">
-      <div className="mb-4 flex items-baseline gap-3">
-        {n && <span className="font-mono text-xs text-accent">{n}</span>}
-        <h3 className="font-display text-xl text-ink">{title}</h3>
+    <div className="group relative my-8 overflow-hidden rounded-xl border border-line bg-paper-raised p-6 transition-colors duration-300 ease-[var(--ease-out-expo)] hover:border-accent/50 md:p-8">
+      {n && (
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute -top-6 right-2 select-none font-display text-[7rem] leading-none text-accent opacity-[0.05] transition-opacity duration-300 ease-[var(--ease-out-expo)] group-hover:opacity-[0.1] md:text-[9rem]"
+        >
+          {n}
+        </span>
+      )}
+      <div className="relative mb-5 flex items-center gap-4">
+        {n && (
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-line-strong bg-paper font-mono text-sm text-accent">
+            {n}
+          </span>
+        )}
+        <h3 className="font-display text-xl text-ink md:text-2xl">{title}</h3>
       </div>
-      <div className="decision-body">{children}</div>
+      <div className="decision-body relative">{children}</div>
     </div>
+  );
+}
+
+/**
+ * A numbered process / workflow timeline. Authored with child <Step>
+ * elements in MDX — a single connecting rail runs behind every badge.
+ */
+export function ProcessSteps({ children }: { children: React.ReactNode }) {
+  return (
+    <RevealGroup
+      as="div"
+      stagger={0.08}
+      className="relative my-10 flex flex-col before:absolute before:bottom-5 before:left-5 before:top-5 before:w-px before:bg-line before:content-['']"
+    >
+      {children}
+    </RevealGroup>
+  );
+}
+
+/** One step of a <ProcessSteps> timeline. `n` is a two-digit label, e.g. "01". */
+export function Step({
+  n,
+  title,
+  children,
+}: {
+  n: string;
+  title: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <RevealItem as="div" className="group relative flex gap-5 pb-8 last:pb-0">
+      <span
+        className={cn(
+          "relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full",
+          "border border-line-strong bg-paper font-mono text-sm text-accent",
+          "transition-colors duration-300 ease-[var(--ease-out-expo)]",
+          "group-hover:border-accent group-hover:bg-accent group-hover:text-paper",
+        )}
+      >
+        {n}
+      </span>
+      <div className="flex-1 pt-1.5 transition-transform duration-300 ease-[var(--ease-out-expo)] group-hover:translate-x-1.5">
+        <h4 className="font-display text-lg text-ink md:text-xl">{title}</h4>
+        <p className="mt-1.5 text-base leading-relaxed text-ink-soft md:text-lg">
+          {children}
+        </p>
+      </div>
+    </RevealItem>
   );
 }
 
@@ -185,10 +281,14 @@ const components: MDXComponents = {
   Section,
   Figure,
   Gallery,
+  Artifacts,
+  Artifact,
   BeforeAfter,
   Callout,
   InPlainTerms,
   Decision,
+  ProcessSteps,
+  Step,
   Metrics,
   Metric,
   h2: (props) => (

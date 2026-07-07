@@ -31,17 +31,27 @@ Two jobs on the sales side were quietly eating people alive. Every time a new pr
 
 I treated these as product problems, not favors. If two people felt this pain, more did. The bottleneck was the process, not anyone's preference.
 
+<figure className="my-10 flex justify-center">
+  <img
+    src="/work/internal-ai-tools/calculating.gif"
+    alt="Furiously doing the mental math"
+    className="w-full max-w-md rounded-xl"
+  />
+</figure>
+
 </Section>
 
 <Section eyebrow="02 · Role & process" title="Find the friction, build the fix, get out of the way">
 
 I spotted the recurring pain, designed the fix, built it, shipped it with a short walkthrough video, and then watched people adopt it on their own.
 
-1. Found the friction (rebuilding decks and charts by hand)
-2. Designed the interaction (transcript in, finished deck out; drag-and-drop chart builder)
-3. Built the tools (Claude skills and a small web app)
-4. Recorded walkthrough videos so anyone could start solo
-5. Handed it over with no training session required
+<ProcessSteps>
+  <Step n="01" title="Found the friction">Rebuilding decks and charts by hand, every time.</Step>
+  <Step n="02" title="Designed the interaction">Transcript in, finished deck out — plus a drag-and-drop chart builder.</Step>
+  <Step n="03" title="Built the tools">Claude skills and a small web app, nothing fancier than it needed to be.</Step>
+  <Step n="04" title="Recorded walkthrough videos">So anyone could start solo, with no meeting required.</Step>
+  <Step n="05" title="Handed it over">No training session, no mandate — just a link and a video.</Step>
+</ProcessSteps>
 
 </Section>
 
@@ -87,15 +97,25 @@ I spotted the recurring pain, designed the fix, built it, shipped it with a shor
 
 <Section eyebrow="04 · Solution & artifacts" title="Four tools, shipped">
 
-1. **Deck-automation skill.** Paste a sales-call transcript (Loom, Zoom, Teams) and it fills the Current State, Requirements, and Solution slides automatically. Shipped March 31, 2026.
-2. **Call summarizer.** Reads a transcript, tells the 314e voices apart from the client's, pulls out the client's real questions, and writes a tidy executive briefing. Shipped April 9, 2026.
-3. **Chart Builder web app.** Drag people into a hierarchy, watch reporting lines route themselves, or paste a screenshot and let it rebuild the chart. Exports cleanly, saves as you go, and never opens a design tool. Shipped May 26, 2026.
-4. **Smart Slides app.** A companion for generating and polishing sales decks. Built March 20, 2026.
+<Artifacts>
 
-<Gallery cols={2}>
-  <Figure src="/work/internal-ai-tools/chart-builder.jpg" alt="Chart Builder web app" aspect="video" />
-  <Figure alt="Deck-automation skill output" aspect="video" />
-</Gallery>
+<Artifact n="01" image="/work/internal-ai-tools/deck-automation-skill.png" imageAlt="Deck-automation skill running as a Claude skill">
+**Deck-automation skill.** Paste a sales-call transcript (Loom, Zoom, Teams) and it fills the Current State, Requirements, and Solution slides automatically. Shipped March 31, 2026.
+</Artifact>
+
+<Artifact n="02" image="/work/internal-ai-tools/call-summarizer.png" imageAlt="Call summarizer output: a structured discussion summary">
+**Call summarizer.** Reads a transcript, tells the 314e voices apart from the client's, pulls out the client's real questions, and writes a tidy executive briefing. Shipped April 9, 2026.
+</Artifact>
+
+<Artifact n="03" image="/work/internal-ai-tools/chart-builder-app.png" imageAlt="Chart Builder web app: drag-and-drop org chart">
+**Chart Builder web app.** Drag people into a hierarchy, watch reporting lines route themselves, or paste a screenshot and let it rebuild the chart. Exports cleanly, saves as you go, and never opens a design tool. Shipped May 26, 2026.
+</Artifact>
+
+<Artifact n="04">
+**Smart Slides app.** A companion for generating and polishing sales decks. Built March 20, 2026.
+</Artifact>
+
+</Artifacts>
 
 </Section>
 
