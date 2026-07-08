@@ -1,5 +1,6 @@
 import type { MDXComponents } from "mdx/types";
 import { MediaFrame } from "@/components/ui/MediaFrame";
+import { VideoEmbed } from "@/components/ui/VideoEmbed";
 import { RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import { cn } from "@/lib/cn";
 
@@ -226,10 +227,14 @@ export function ProcessSteps({ children }: { children: React.ReactNode }) {
 export function Step({
   n,
   title,
+  image,
+  imageAlt,
   children,
 }: {
   n: string;
   title: string;
+  image?: string;
+  imageAlt?: string;
   children: React.ReactNode;
 }) {
   return (
@@ -244,11 +249,16 @@ export function Step({
       >
         {n}
       </span>
-      <div className="flex-1 pt-1.5 transition-transform duration-300 ease-[var(--ease-out-expo)] group-hover:translate-x-1.5">
+      <div className="min-w-0 flex-1 pt-1.5 transition-transform duration-300 ease-[var(--ease-out-expo)] group-hover:translate-x-1.5">
         <h4 className="font-display text-lg text-ink md:text-xl">{title}</h4>
         <p className="mt-1.5 text-base leading-relaxed text-ink-soft md:text-lg">
           {children}
         </p>
+        {image && (
+          <div className="mt-4 max-w-xl overflow-hidden rounded-lg border border-line md:max-w-2xl">
+            <MediaFrame src={image} alt={imageAlt ?? title} aspect="video" />
+          </div>
+        )}
       </div>
     </RevealItem>
   );
@@ -281,6 +291,7 @@ const components: MDXComponents = {
   Section,
   Figure,
   Gallery,
+  VideoEmbed,
   Artifacts,
   Artifact,
   BeforeAfter,

@@ -24,7 +24,7 @@ export async function generateMetadata({
   const work = getWorkBySlug(slug);
   if (!work) return {};
   return {
-    title: work.title.split(" — ")[0],
+    title: work.title.split(": ")[0],
     description: work.summary,
     openGraph: {
       title: work.title,
@@ -68,7 +68,7 @@ export default async function CaseStudyPage({
             >
               <span className="label">← Previous</span>
               <span className="mt-2 block font-display text-xl text-ink group-hover:text-accent">
-                {prev.title.split(" — ")[0]}
+                {prev.title.split(": ")[0]}
               </span>
             </Link>
           ) : (
@@ -81,7 +81,7 @@ export default async function CaseStudyPage({
             >
               <span className="label">Next →</span>
               <span className="mt-2 block font-display text-xl text-ink group-hover:text-accent">
-                {next.title.split(" — ")[0]}
+                {next.title.split(": ")[0]}
               </span>
             </Link>
           ) : (

@@ -1,13 +1,14 @@
 ---
-title: "Videos That Edit Themselves — Auto-Motion Pipeline"
+title: "Videos That Edit Themselves: Auto-Motion Pipeline"
 client: "314e Corp"
 summary: "Product explainer videos were a manual grind: record voice, hand-time captions, nudge every frame to match. I built a pipeline that takes a script and Figma frames and renders a finished, word-synced motion video on its own."
 role: "Designer-Builder (pipeline design, build, deployment)"
 team: "Solo"
 timeline: "2026"
-platform: "HeyGen Hyperframe, Remotion (VS Code), ElevenLabs API"
+platform: "HyperFrames, GSAP, ElevenLabs (voice + music)"
 tags: ["Motion Design", "AI", "0 to 1"]
 cover: "/work/auto-motion-videos/cover.png"
+video: "P34-yRItXQI"
 impact: "Cut video turnaround from three weeks to one, so product videos ship as fast as the script is written."
 featured: true
 order: 2
@@ -37,11 +38,14 @@ I treated this as a pipeline problem, not a one-off editing favor. If the inputs
 
 I designed the flow, built it, and wired the tools together so a video could be generated from assets we were already making anyway.
 
-1. Found the friction (hours of manual voiceover, captioning, and frame timing per video)
-2. Designed the interaction (script and Figma frames in, finished motion video out)
-3. Built the pipeline as a Remotion project driven through a VS Code skill
-4. Generated the voice with the ElevenLabs API and the presenter frames with HeyGen Hyperframe
-5. Auto-synced captions word by word and timed the visuals to the audio, no manual scrubbing
+<ProcessSteps>
+  <Step n="01" title="Scaffolded a HyperFrames project" image="/work/auto-motion-videos/step-01-scaffold.png" imageAlt="HyperFrames project scaffold: root timeline and scene files">One root timeline, a scene file per beat, brand type/color/motion set once in a shared config.</Step>
+  <Step n="02" title="Wrote the script, generated the voice" image="/work/auto-motion-videos/step-02-voice.png" imageAlt="Script and ElevenLabs voiceover generation">ElevenLabs turned it into a voiceover, transcribed down to word-level timestamps.</Step>
+  <Step n="03" title="Generated a matching score" image="/work/auto-motion-videos/step-03-score.png" imageAlt="Background score generation">A background track made to fit, mixed in quietly under the voice.</Step>
+  <Step n="04" title="Built each scene in code" image="/work/auto-motion-videos/step-04-scenes.png" imageAlt="Scene animation built in code">Every entrance and exit animated off the exact word it belongs to.</Step>
+  <Step n="05" title="Stitched it into one timeline" image="/work/auto-motion-videos/step-05-timeline.png" imageAlt="Scenes stitched into one HyperFrames timeline">A clean cross-dissolve at every cut, so it plays as one continuous video.</Step>
+  <Step n="06" title="Linted, previewed, rendered" image="/work/auto-motion-videos/step-06-render.png" imageAlt="Linting, preview, and render pipeline">Straight from the command line, no manual scrubbing.</Step>
+</ProcessSteps>
 
 </Section>
 
@@ -61,7 +65,7 @@ I designed the flow, built it, and wired the tools together so a video could be 
 
 <Decision n="02" title="Word-by-word sync done automatically">
 
-**What.** ElevenLabs generates the voiceover, and the pipeline aligns the transcript to the audio at the word level, then drives captions and visual timing from that alignment.
+**What.** ElevenLabs generates the voiceover and transcribes it into word-level timestamps, and every scene's animation is built in code, cued directly off that timestamp file rather than timed by eye.
 
 **Why.** Hand-timing captions is the single most soul-crushing part of motion work. If the machine owns the timing, a human never touches a timeline.
 
@@ -73,9 +77,9 @@ I designed the flow, built it, and wired the tools together so a video could be 
 
 <Decision n="03" title="Programmatic video over a timeline editor">
 
-**What.** Videos are composed in Remotion (code) rather than dragged together in a traditional editor, and the whole project runs from a VS Code skill.
+**What.** Each video is a HyperFrames project, a root timeline plus one code file per scene, rendered from the command line rather than dragged together in a traditional editor.
 
-**Why.** Code is reproducible and versionable. Change the script, re-render; tweak a brand color once, every video inherits it. A timeline editor cannot do that.
+**Why.** Code is reproducible and versionable. Change the script, regenerate the voice, and the whole video rebuilds; tweak a brand color once, every scene inherits it. A timeline editor cannot do that.
 
 **Tradeoff.** More up-front engineering than opening an editor and exporting once.
 
@@ -87,12 +91,11 @@ I designed the flow, built it, and wired the tools together so a video could be 
 
 <Section eyebrow="04 · Solution & artifacts" title="Script in, synced video out">
 
-The pipeline runs as a chain: the **script** sets the words and structure, **ElevenLabs** turns it into a natural voiceover, **HeyGen Hyperframe** supplies the presenter frames, and **Remotion** composes the **Figma frames** against the audio, with captions and visual cues placed automatically from the word-level transcript. Hit render and a finished 314e product video comes out the other side.
+The pipeline runs as a chain: the **script** sets the words and structure, **ElevenLabs** turns it into a voiceover and a word-level timestamp file, and a matching background score gets mixed in underneath. **GSAP** animates every scene precisely off those timestamps, and each scene stitches into one **HyperFrames** timeline with a clean cross-dissolve at every cut. Hit render and a finished 314e product video comes out the other side.
 
-<Gallery cols={2}>
-  <Figure alt="Pipeline overview: script and Figma frames in, synced video out" aspect="video" />
-  <Figure alt="Word-by-word caption sync against the ElevenLabs voiceover" aspect="video" />
-</Gallery>
+The first video built this way was a 141-second explainer for **Jeeves Search**, built from 12 scenes.
+
+<VideoEmbed videoId="P34-yRItXQI" title="Jeeves Search explainer, built with the HyperFrames pipeline" />
 
 </Section>
 
@@ -104,7 +107,7 @@ The pipeline runs as a chain: the **script** sets the words and structure, **Ele
   <Metric value="6" label="Video projects shipped" />
 </Metrics>
 
-A video that used to take three weeks now ships in one. Product videos stopped being the thing that slipped and became something we could turn around on demand.
+A video that used to take three weeks now ships in one. One of the six, a 141-second explainer for Jeeves Search built from 12 scenes, rendered clean in both 1080p and 4K straight off the command line. Product videos stopped being the thing that slipped and became something we could turn around on demand.
 
 </Section>
 

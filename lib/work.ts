@@ -20,6 +20,8 @@ export type WorkFrontmatter = {
   tags: string[];
   /** Path under /public, e.g. /work/zsegment/cover.jpg */
   cover: string;
+  /** YouTube video ID (not a full URL) — if set, replaces the hero cover image. */
+  video?: string;
   /** Headline outcomes shown in the case-study hero + work card. */
   metrics?: Metric[];
   /** Featured studies appear on the home page; lower order = earlier. */

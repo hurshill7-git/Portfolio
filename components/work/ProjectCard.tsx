@@ -44,7 +44,7 @@ export function ProjectCard({
             size === "lg" ? "text-3xl" : "text-2xl",
           )}
         >
-          {work.title.split(" — ")[0]}
+          {work.title.split(": ")[0]}
         </h3>
         <p
           className={cn(

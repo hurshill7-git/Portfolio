@@ -1,5 +1,6 @@
 import { Container } from "@/components/ui/Container";
 import { MediaFrame } from "@/components/ui/MediaFrame";
+import { VideoEmbed } from "@/components/ui/VideoEmbed";
 import { Tag } from "@/components/ui/Tag";
 import type { Work } from "@/lib/work";
 
@@ -15,7 +16,7 @@ function MetaItem({ label, value }: { label: string; value?: string }) {
 
 /** Top-of-page header for a case study: title, meta strip, cover, metrics. */
 export function CaseHero({ work }: { work: Work }) {
-  const [titleMain, titleSub] = work.title.split(" — ");
+  const [titleMain, titleSub] = work.title.split(": ");
 
   return (
     <header>
@@ -57,15 +58,19 @@ export function CaseHero({ work }: { work: Work }) {
       </Container>
 
       <Container>
-        <MediaFrame
-          src={work.cover || undefined}
-          alt={`${work.title} — cover`}
-          aspect="wide"
-          priority
-          parallax
-          label={`${work.client ?? work.slug} — hero cover`}
-          sizes="(min-width: 1216px) 1216px, 100vw"
-        />
+        {work.video ? (
+          <VideoEmbed videoId={work.video} title={`${work.title} video`} />
+        ) : (
+          <MediaFrame
+            src={work.cover || undefined}
+            alt={`${work.title} cover`}
+            aspect="wide"
+            priority
+            parallax
+            label={`${work.client ?? work.slug} — hero cover`}
+            sizes="(min-width: 1216px) 1216px, 100vw"
+          />
+        )}
       </Container>
     </header>
   );

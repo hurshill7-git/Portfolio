@@ -41,7 +41,7 @@ export function Nav() {
         <Link
           href="/"
           className="font-display text-lg tracking-tight text-ink"
-          aria-label={`${site.name} — home`}
+          aria-label={`${site.name}, home`}
         >
           {site.name}
           <span className="text-accent">.</span>

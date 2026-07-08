@@ -8,7 +8,7 @@ export const site = {
   role: "Experience Designer",
   // One-liner used in hero + meta description.
   tagline:
-    "A designer who builds — across product, brand, motion, and 3D, taking the whole experience from first idea to shipped.",
+    "A designer who builds across product, brand, motion, and 3D, taking the whole experience from first idea to shipped.",
   location: "Bangalore, India",
   email: "hurshill7@gmail.com",
   phone: "+91 62616 33569",

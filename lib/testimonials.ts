@@ -17,7 +17,7 @@ export type Testimonial = {
 export const testimonials: Testimonial[] = [
   {
     quote:
-      "For delivering exceptional help on the Jeeves videos and helping our customers adopt Jeeves — kudos for leading and executing it end-to-end.",
+      "For delivering exceptional help on the Jeeves videos and helping our customers adopt Jeeves: kudos for leading and executing it end-to-end.",
     name: "Abhilash R.",
     role: "Product Marketing Manager, 314e",
     featured: true,
@@ -31,7 +31,7 @@ export const testimonials: Testimonial[] = [
   },
   {
     quote:
-      "Hard work mixed with creativity creates sensational results — thanks for the amazing work on our two main conferences.",
+      "Hard work mixed with creativity creates sensational results. Thanks for the amazing work on our two main conferences.",
     name: "Swapnil P.",
     role: "314e",
     featured: true,
@@ -45,7 +45,7 @@ export const testimonials: Testimonial[] = [
   },
   {
     quote:
-      "Thanks for making the conferences a big success — our marketing game has gone up substantially.",
+      "Thanks for making the conferences a big success. Our marketing game has gone up substantially.",
     name: "Abhishek B.",
     role: "314e",
     featured: true,
@@ -65,7 +65,7 @@ export const testimonials: Testimonial[] = [
     featured: true,
   },
   {
-    quote: "Vibe content looks amazing — great work!",
+    quote: "Vibe content looks amazing, great work!",
     name: "Pallavi K.",
     role: "314e",
     featured: true,
@@ -79,7 +79,7 @@ export const testimonials: Testimonial[] = [
   },
   {
     quote:
-      "Thanks for the ongoing UI revamp — a refreshing 'interface lift' that's got us all clicking with joy.",
+      "Thanks for the ongoing UI revamp, a refreshing 'interface lift' that's got us all clicking with joy.",
     name: "Soumya A.",
     role: "Product Manager, 314e",
   },
