@@ -15,6 +15,8 @@ export function ProjectCard({
   size?: "md" | "lg";
   priority?: boolean;
 }) {
+  const [, titleSub] = work.title.split(": ");
+
   return (
     <Link
       href={`/work/${work.slug}`}
@@ -31,6 +33,11 @@ export function ProjectCard({
           label={`${work.client ?? work.slug} cover`}
           className="transition-[box-shadow] duration-500 ease-[var(--ease-out-expo)] group-hover:shadow-[0_24px_60px_-32px_rgba(0,0,0,0.35)]"
         />
+        {titleSub && (
+          <span className="absolute right-3 top-3 z-10 rounded-full border border-white/15 bg-ink-bg/70 px-3 py-1 font-mono text-2xs uppercase tracking-wider text-paper-on-ink backdrop-blur-sm">
+            {titleSub}
+          </span>
+        )}
       </Tilt>
       <div className="mt-5 flex flex-col gap-3">
         <div className="flex items-center gap-3">

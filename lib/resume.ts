@@ -84,16 +84,6 @@ export const education: Education[] = [
     org: "National Institute of Fashion Technology (NIFT)",
     period: "2019 to 2023",
   },
-  {
-    qualification: "Class XII",
-    org: "Vimala Convent H.S. School",
-    period: "2017",
-  },
-  {
-    qualification: "Class X",
-    org: "Vimala Convent H.S. School",
-    period: "2015",
-  },
 ];
 
 export const skillGroups: { group: string; items: string[] }[] = [
