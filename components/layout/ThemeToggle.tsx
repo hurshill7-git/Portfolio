@@ -8,13 +8,53 @@ import { cn } from "@/lib/cn";
  * hydration mismatch and no need to read theme state in React.
  */
 export function ThemeToggle({ className }: { className?: string }) {
-  function toggle() {
+  function applyTheme() {
     const isDark = document.documentElement.classList.toggle("dark");
     try {
       localStorage.setItem("theme", isDark ? "dark" : "light");
     } catch {
       // localStorage unavailable (private mode) — toggle still works for the session.
     }
+  }
+
+  function toggle(e: React.MouseEvent<HTMLButtonElement>) {
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!document.startViewTransition || reduceMotion) {
+      applyTheme();
+      return;
+    }
+
+    // Keyboard activation (Enter/Space) reports clientX/Y as 0 — fall back to
+    // the button's own center so the wipe doesn't erroneously start at the
+    // top-left corner.
+    let x = e.clientX;
+    let y = e.clientY;
+    if (x === 0 && y === 0) {
+      const rect = e.currentTarget.getBoundingClientRect();
+      x = rect.left + rect.width / 2;
+      y = rect.top + rect.height / 2;
+    }
+    const endRadius = Math.hypot(
+      Math.max(x, window.innerWidth - x),
+      Math.max(y, window.innerHeight - y),
+    );
+
+    const transition = document.startViewTransition(() => applyTheme());
+    transition.ready.then(() => {
+      document.documentElement.animate(
+        {
+          clipPath: [
+            `circle(0px at ${x}px ${y}px)`,
+            `circle(${endRadius}px at ${x}px ${y}px)`,
+          ],
+        },
+        {
+          duration: 600,
+          easing: "cubic-bezier(0.16, 1, 0.3, 1)",
+          pseudoElement: "::view-transition-new(root)",
+        },
+      );
+    });
   }
 
   return (

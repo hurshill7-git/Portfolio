@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
 import { CustomCursor } from "@/components/interactions/CustomCursor";
+import { ConsoleGreeting } from "@/components/interactions/ConsoleGreeting";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -84,6 +85,7 @@ export default function RootLayout({
         </main>
         <Footer />
         <CustomCursor />
+        <ConsoleGreeting />
         <Analytics />
       </body>
     </html>

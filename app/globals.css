@@ -322,6 +322,17 @@ html.has-custom-cursor * {
 }
 
 /* ------------------------------------------------------------------ *
+ * Theme-toggle view transition — a circular wipe (driven by JS in
+ * ThemeToggle.tsx via document.startViewTransition + clip-path animate on
+ * ::view-transition-new(root)) replaces the browser's default cross-fade.
+ * ------------------------------------------------------------------ */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* ------------------------------------------------------------------ *
  * 3D card tilt + specular highlight
  * ------------------------------------------------------------------ */
 .tilt {

@@ -7,6 +7,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { MediaFrame } from "@/components/ui/MediaFrame";
 import { ProjectCard } from "@/components/work/ProjectCard";
 import { Testimonials } from "@/components/home/Testimonials";
+import { ScrollMilestone } from "@/components/home/ScrollMilestone";
 import { BeyondCarousel } from "@/components/about/BeyondCarousel";
 import { Tag } from "@/components/ui/Tag";
 import { Button } from "@/components/ui/Button";
@@ -114,6 +115,7 @@ export default function HomePage() {
             </div>
           </Reveal>
         </Container>
+        <ScrollMilestone />
       </section>
     </>
   );
