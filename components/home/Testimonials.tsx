@@ -82,7 +82,7 @@ function QuoteCard({ testimonial: t }: { testimonial: Testimonial }) {
         <p className="font-medium text-ink transition-colors duration-300 group-hover:text-accent">
           {t.name}
         </p>
-        <p className="mt-1 text-sm text-muted">{t.role}</p>
+        {t.role && <p className="mt-1 text-sm text-muted">{t.role}</p>}
       </figcaption>
     </figure>
   );

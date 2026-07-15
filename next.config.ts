@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
   turbopack: { root: projectRoot },
   images: {
     formats: ["image/avif", "image/webp"],
+    qualities: [75, 100],
   },
 };
 

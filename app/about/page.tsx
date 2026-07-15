@@ -3,7 +3,7 @@ import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
 import { MediaFrame } from "@/components/ui/MediaFrame";
-import { Tag } from "@/components/ui/Tag";
+import { BeyondCarousel } from "@/components/about/BeyondCarousel";
 import { bio, beyond } from "@/lib/about";
 import { experience, skillGroups } from "@/lib/resume";
 import { site } from "@/lib/site";
@@ -46,7 +46,7 @@ export default function AboutPage() {
           <div className="md:col-span-5">
             <Reveal delay={0.1}>
               <MediaFrame
-                src="/portrait-hr.png"
+                src="/profile-styled.png"
                 alt={`Portrait of ${site.name}`}
                 aspect="portrait"
                 sizes="(min-width: 768px) 40vw, 100vw"
@@ -121,22 +121,8 @@ export default function AboutPage() {
               The visual craft I bring to everything else.
             </h2>
           </Reveal>
-          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {beyond.map((b, i) => (
-              <Reveal key={b.title} delay={i * 0.05}>
-                <MediaFrame
-                  alt={b.title}
-                  aspect="portrait"
-                  label={`${b.title}: add visuals`}
-                />
-                <div className="mt-3 flex items-center justify-between">
-                  <p className="text-sm text-ink">{b.title}</p>
-                  <Tag>{b.kind}</Tag>
-                </div>
-              </Reveal>
-            ))}
-          </div>
         </Container>
+        <BeyondCarousel items={beyond} />
       </section>
     </>
   );

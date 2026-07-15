@@ -4,12 +4,15 @@ import { Container } from "@/components/ui/Container";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import { ScrollTextReveal } from "@/components/interactions/ScrollTextReveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { MediaFrame } from "@/components/ui/MediaFrame";
 import { ProjectCard } from "@/components/work/ProjectCard";
 import { Testimonials } from "@/components/home/Testimonials";
+import { BeyondCarousel } from "@/components/about/BeyondCarousel";
 import { Tag } from "@/components/ui/Tag";
 import { Button } from "@/components/ui/Button";
 import { getFeaturedWork } from "@/lib/work";
 import { site, toolkit } from "@/lib/site";
+import { beyond } from "@/lib/about";
 
 export default function HomePage() {
   const featured = getFeaturedWork();
@@ -18,8 +21,43 @@ export default function HomePage() {
     <>
       <Hero />
 
+      {/* About teaser */}
+      <section className="py-20 md:py-28">
+        <Container>
+          <div className="grid gap-10 md:grid-cols-12">
+            <div className="md:col-span-3">
+              <Reveal>
+                <p className="label">About</p>
+              </Reveal>
+              <Reveal delay={0.1} className="mt-8">
+                <MediaFrame
+                  src="/profile-styled.png"
+                  alt={`Portrait of ${site.name}`}
+                  aspect="portrait"
+                  sizes="(min-width: 768px) 25vw, 60vw"
+                />
+              </Reveal>
+            </div>
+            <div className="md:col-span-9">
+              <ScrollTextReveal
+                className="font-display text-2xl leading-snug text-ink md:text-3xl"
+                text={`I'm ${site.shortName}, an experience designer at 314e Corp. Most days I'm making dense health-tech software make sense to the people who live in it. The rest of the time I'm deep in brand, motion, or a 3D rabbit hole. Happiest when a hard problem gets simple enough that it just clicks.`}
+              />
+              <Reveal delay={0.15}>
+                <div className="mt-8">
+                  <Button href="/about" variant="outline">
+                    More about me
+                  </Button>
+                </div>
+              </Reveal>
+            </div>
+          </div>
+        </Container>
+        <BeyondCarousel items={beyond} />
+      </section>
+
       {/* Selected work */}
-      <Container as="section" className="py-20 md:py-28">
+      <Container as="section" className="border-t border-line py-20 md:py-28">
         <SectionHeading
           eyebrow="Selected work"
           title="Work I'd show you over coffee"
@@ -37,30 +75,6 @@ export default function HomePage() {
           ))}
         </RevealGroup>
       </Container>
-
-      {/* About teaser */}
-      <section className="border-t border-line py-20 md:py-28">
-        <Container>
-          <div className="grid gap-10 md:grid-cols-12">
-            <Reveal className="md:col-span-3">
-              <p className="label">About</p>
-            </Reveal>
-            <div className="md:col-span-9">
-              <ScrollTextReveal
-                className="font-display text-2xl leading-snug text-ink md:text-3xl"
-                text={`I'm ${site.shortName}, an experience designer at 314e Corp. Most days I'm making dense health-tech software make sense to the people who live in it. The rest of the time I'm deep in brand, motion, or a 3D rabbit hole. Happiest when a hard problem gets simple enough that it just clicks.`}
-              />
-              <Reveal delay={0.1}>
-                <div className="mt-8">
-                  <Button href="/about" variant="outline">
-                    More about me
-                  </Button>
-                </div>
-              </Reveal>
-            </div>
-          </div>
-        </Container>
-      </section>
 
       {/* What people say */}
       <Testimonials />

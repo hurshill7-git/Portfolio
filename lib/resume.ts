@@ -28,7 +28,8 @@ export const experience: Experience[] = [
     bullets: [
       "Designed user flows, wireframes, and high-fidelity interfaces for enterprise healthcare platforms (ZSegment, Jeeves, Veritable), balancing usability, accessibility, and real business constraints.",
       "Led end-to-end redesigns of dense data tools, turning expert-only screens into systems a new operator could navigate on day one. ZSegment now runs in production across 8 health systems.",
-      "Grew the design systems: defined component behavior, interaction states, and visual consistency across products, including the full Jeeves brand guidelines (logo, color, type, 40+ icons, motion).",
+      "Built and manage 314e's product design system on top of Ant Design, applying color theory and core visual design principles (hierarchy, contrast, rhythm, accessibility) to define component behavior, interaction states, and a consistent visual language across products.",
+      "Created the full Jeeves brand guidelines from scratch, logo, color palette, typography, 40+ custom icons, and motion principles, now the reference system for every Jeeves touchpoint.",
       "Led product-explainer and onboarding experiences, including 15+ in-product tutorials, to improve feature discoverability and cut support confusion.",
       "Built internal AI-assisted tools that turned hours of manual deck and chart work into minutes, adopted across the sales team with no mandate.",
       "Designed and built video-production pipelines that cut explainer-video turnaround from three weeks to one (3x faster): a script-and-Figma-to-render motion system with word-synced ElevenLabs voiceover, plus a generative pipeline (Freepik, Veo 3, Grok, Premiere) that produces cinematic product videos in about three days.",
@@ -38,7 +39,7 @@ export const experience: Experience[] = [
   {
     role: "Visual Designer",
     org: "Youngun.in",
-    period: "6 months",
+    period: "Internship · Jun – Dec 2021",
     summary:
       "Meme-marketing and brand content for major consumer brands.",
     bullets: [
@@ -49,14 +50,14 @@ export const experience: Experience[] = [
   },
   {
     role: "Studio Intern",
-    org: "CampusSutra",
-    period: "Internship",
+    org: "Campus Sutra",
+    period: "Internship · Jun – Aug 2022",
     summary:
-      "Product and lifestyle photography for e-commerce.",
+      "Studio product photography and cinematic social videos for Campus Sutra and its sister brands.",
     bullets: [
-      "Developed product-photography concepts that lifted product visibility and drove online sales.",
-      "Shot e-commerce and lifestyle sets, keeping visuals consistent across platforms.",
-      "Streamlined post-production to push more captured and edited products out per day.",
+      "Assisted senior photographers on e-commerce, platform, and creative shoots for Campus Sutra and sister brands including Sohi, Via Tokyo, Blnce, Haute Sauce, and Bon Homie.",
+      "Learned studio lighting and metering for e-commerce-ready product shots across categories from jewelry to home decor.",
+      "Shot and edited cinematic short-form videos for social media, from concept through post-production.",
     ],
   },
   {
@@ -99,7 +100,13 @@ export const skillGroups: { group: string; items: string[] }[] = [
   },
   {
     group: "Visual & brand",
-    items: ["Visual design", "Branding & identity", "Creative direction"],
+    items: [
+      "Visual design",
+      "Visual design principles",
+      "Color theory",
+      "Branding & identity",
+      "Creative direction",
+    ],
   },
   {
     group: "Emerging",
@@ -124,6 +131,7 @@ export const skillGroups: { group: string; items: string[] }[] = [
     group: "Tools",
     items: [
       "Figma",
+      "Ant Design",
       "Adobe Creative Suite",
       "Premiere Pro",
       "ElevenLabs",

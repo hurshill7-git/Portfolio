@@ -286,6 +286,41 @@ html.has-custom-cursor * {
   background: var(--accent);
 }
 
+/* Solid "View" tag that follows the dot over data-cursor="view" elements
+   (e.g. gallery cards) — offset beside the dot, plain white with an accent glow. */
+.cursor-label {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 18px 0 0 18px;
+  padding: 0.4rem 0.9rem;
+  border-radius: 9999px;
+  background: #ffffff;
+  color: #16150f;
+  pointer-events: none;
+  will-change: transform, opacity;
+  box-shadow:
+    0 8px 24px -8px rgba(0, 0, 0, 0.5),
+    0 0 28px color-mix(in srgb, var(--accent) 55%, transparent);
+}
+.cursor-label-text {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--text-2xs);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.cursor-label-arrow {
+  font-size: 0.85rem;
+  line-height: 1;
+  color: var(--accent);
+}
+
 /* ------------------------------------------------------------------ *
  * 3D card tilt + specular highlight
  * ------------------------------------------------------------------ */

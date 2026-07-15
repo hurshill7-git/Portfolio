@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
@@ -32,12 +33,21 @@ export default function ResumePage() {
       {/* Header */}
       <Reveal>
         <div className="flex flex-col gap-8 border-b border-line pb-10 md:flex-row md:items-end md:justify-between">
-          <div>
-            <p className="label mb-3">Résumé</p>
-            <h1 className="font-display text-4xl text-ink">{site.name}</h1>
-            <p className="mt-2 text-lg text-muted">
-              {site.role} · {site.location}
-            </p>
+          <div className="flex items-center gap-5">
+            <Image
+              src="/profile-styled.png"
+              alt={`Portrait of ${site.name}`}
+              width={128}
+              height={128}
+              className="h-32 w-32 shrink-0 rounded-xl object-cover"
+            />
+            <div>
+              <p className="label mb-3">Résumé</p>
+              <h1 className="font-display text-4xl text-ink">{site.name}</h1>
+              <p className="mt-2 text-lg text-muted">
+                {site.role} · {site.location}
+              </p>
+            </div>
           </div>
           <div className="no-print flex flex-wrap gap-3">
             <PrintButton>Download PDF</PrintButton>

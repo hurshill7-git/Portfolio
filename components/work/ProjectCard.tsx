@@ -22,6 +22,7 @@ export function ProjectCard({
       href={`/work/${work.slug}`}
       className="group block"
       aria-label={`View case study: ${work.title}`}
+      data-cursor="view"
     >
       <Tilt className="rounded-xl">
         <MediaFrame
