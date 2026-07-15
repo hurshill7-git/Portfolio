@@ -1,123 +1,110 @@
 ---
-title: "The Show Hiding in a PDF: Ragam Theatre App"
-client: "Personal / indie theatre"
-summary: "Indie theatre was hiding in PDFs and word of mouth. I built an app where producers could list a show in minutes and audiences could actually find one happening nearby tonight."
-role: "Product Designer (solo)"
-team: "1 designer, 1 developer"
+title: "Great Screen, No Way to Find It: Ragam Theatre App"
+client: "Ragam Theatre"
+summary: "Ragam Theatre had real 4K and 3D screens in Kerala and no digital presence at all. As a 6-person college team I led UI design and prototyping on a booking app that gave it a proper digital front door: browse, trailer, format, seat, done."
+role: "UI Designer (visual design & prototyping)"
+team: "6-person student team"
 timeline: "2021 to 2022"
-platform: "Mobile app (Figma, Framer, React)"
+platform: "Mobile app concept (Figma, prototype)"
 tags: ["Product Design", "UX", "Mobile"]
 cover: "/work/ragam/cover.png"
-impact: "Gave invisible indie productions one place to be found, and producers a way to reach their audience."
+impact: "A complete booking-app concept and clickable prototype for a real local theatre, built as a college project rather than a shipped product."
 featured: false
 order: 8
-metrics:
-  - value: "50+"
-    label: "Shows in 3 months*"
-  - value: "200+"
-    label: "Tickets sold in 6 months*"
-  - value: "4.2/5"
-    label: "Average audience rating*"
 published: true
 ---
 
-<Section eyebrow="01 · Context & problem" title="Great shows nobody could find">
+<Section eyebrow="01 · Context & problem" title="A 4K screen nobody could find online">
 
-Independent theatre (small plays, improv, experimental stuff) was basically invisible. It happened in tiny venues, promoted by word of mouth and the occasional buried social post. Anyone who wanted to discover new theatre had nowhere to look, and producers spent hours wrangling tickets and emails by hand.
+Ragam Theatre runs real screens in Parassinikadavu and Thrissur, Kerala, including 4K and 3D formats that plenty of bigger multiplexes still don't have. What it didn't have was any digital presence: no app, no easy way to check what was playing, and no path from "I want to watch a movie tonight" to an actual seat.
 
 <InPlainTerms>
-This was a two-sided problem. Producers needed a dead-simple way to list a show and sell tickets. Audiences needed a way to find shows near them. Eventbrite was too generic and Broadway sites only cared about the big productions, so the scrappy indie middle had nothing.
+This was a college brief: pick a real local business and design something that solves an actual visibility problem for it. We picked Ragam Theatre because the mismatch was so stark, a genuinely well-equipped cinema that most people nearby would only ever hear about through word of mouth.
 </InPlainTerms>
 
-I built Ragam for exactly that middle: effortless for a busy producer to set up, genuinely enjoyable for an audience to browse.
+So the brief became a straightforward booking app: browse what's on, watch a trailer, pick a date, time, and format, and book a seat, the convenience people already expect from the bigger chains.
 
 </Section>
 
-<Section eyebrow="02 · Role & process" title="Solo designer, two core flows">
+<Section eyebrow="02 · Role & process" title="Six of us, my focus was the UI and the prototype">
 
-I owned research, flows, interaction, visual design, and dev handoff.
+Research, flows, wireframes, UI, and dev were split across a six-person team. My part was the visual design and the interactive prototype, built on top of the flows and low-fidelity wireframes the group agreed on together.
 
 <ProcessSteps>
-  <Step n="01" title="Research">Interviewed real producers and theatre-goers about what they actually needed.</Step>
-  <Step n="02" title="User flows">Mapped "Create a Show" and "Find and Book a Show."</Step>
-  <Step n="03" title="Interaction design">Made it feel immediate, not like filing paperwork.</Step>
-  <Step n="04" title="Visual design">Theatrical and sophisticated, but still approachable.</Step>
-  <Step n="05" title="Handoff">Detailed specs, and iteration through the builds.</Step>
+  <Step n="01" title="Mapped the user flows">Homepage branching into New Releases, Trending, Contact, Account, and the side menu, each traced through to payment and a Thank You screen.</Step>
+  <Step n="02" title="Sketched the screens">Nine screens on paper first: onboarding, browse, movie details, contact, feedback, and booking.</Step>
+  <Step n="03" title="Set the type and colour system">Lemon/Milk and Century Gothic, paired with the theatre's own black, orange, and red.</Step>
+  <Step n="04" title="Built the wireframes">Greyscale versions of every core screen, home, login, sign up, movie details, side menu, booking summary, before touching colour.</Step>
+  <Step n="05" title="Designed the UI and wired the prototype">The part I owned: the final screens (trending, seat map, contact) and a clickable Figma prototype across three flows.</Step>
 </ProcessSteps>
 
 </Section>
 
-<Section eyebrow="03 · Key decisions" title="Three decisions rooted in real life">
+<Section eyebrow="03 · Key decisions" title="Three decisions grounded in a real place">
 
-<Decision n="01" title="Make listing a show almost effortless">
+<Decision n="01" title="Borrowed the theatre's own identity">
 
-**What.** The "Create a Show" flow fits in five screens, with nothing required beyond the essentials.
+**What.** Pulled straight from Ragam's existing look: the black, orange, and red already on its signage, paired with Lemon/Milk and Century Gothic.
 
-**Why.** Producers are also doing the lighting, the acting, and the panicking. The faster they can list a show, the more shows exist on the platform.
+**Why.** A local theatre doesn't need a brand-new identity to feel legitimate online, it needs to feel like itself. Reusing what people already recognize made the app instantly familiar instead of generic.
 
-**Tradeoff.** Fewer required fields means less data, but a listed show beats a perfect-but-never-finished one.
+**Tradeoff.** Less room to invent a flashy new identity for the coursework, more constraint-driven than free-form.
 
-**Result.** Producers list a show in three to five minutes, which keeps supply flowing.
-
-</Decision>
-
-<Decision n="02" title="Search and filters, not a mystery feed">
-
-**What.** A straightforward search-and-filter setup (title, date, genre, distance) instead of an algorithmic recommendation feed.
-
-**Why.** People hunting for theatre roughly know what they want. "Comedy within five miles this weekend" beats an infinite scroll of the app's best guesses.
-
-**Tradeoff.** Feeds feel more addictive, but for this job, useful beats addictive.
-
-**Result.** Audiences find what they want fast, without wading through irrelevant shows.
+**Result.** The screens read as clearly Ragam's, not a template any ticketing app could have used.
 
 </Decision>
 
-<Decision n="03" title="Reviews, because theatre is a gamble">
+<Decision n="02" title="Format and showtime, not just the movie">
 
-**What.** Every show carries star ratings and written reviews, front and center on its page.
+**What.** The booking flow has a dedicated "select date, time, and experience" step, where experience means Classic, 4K, or 3D.
 
-**Why.** A stranger's show could be transcendent or deeply awkward. Reviews take the edge off that bet.
+**Why.** 4K and 3D are Ragam's actual edge over plainer local screens. Burying that choice inside a generic seat picker would waste the one thing worth a special trip.
 
-**Tradeoff.** Early shows have no reviews yet, so trust has to build over time.
+**Tradeoff.** One extra decision point before payment.
 
-**Result.** As the platform grows, reviews become the signal that nudges people to buy.
+**Result.** The format the theatre is proud of becomes a visible, tappable choice, not a footnote.
+
+</Decision>
+
+<Decision n="03" title="Contact info as the real answer, not a form">
+
+**What.** The Contact Us screen leads with the actual addresses (Parassinikadavu and Thrissur) and phone numbers. A "Write to us" form sits below that, not instead of it.
+
+**Why.** The whole brief was visibility. If someone opens the app just to find out where the theatre is or call ahead, making them fill out a form first would defeat the point.
+
+**Tradeoff.** Less "product-y," more like a local business card, on purpose.
+
+**Result.** Anyone unsure whether Ragam is nearby gets the answer in one tap, no typing required.
 
 </Decision>
 
 </Section>
 
-<Section eyebrow="04 · Solution & artifacts" title="The core product">
+<Section eyebrow="04 · Solution & artifacts" title="What the team shipped">
 
-- **Discovery:** search, filters (date, location, genre), a grid of show cards, and a map view
-- **Show detail:** hero, description, performer bios, venue, ticket types, reviews, and Book Now
-- **Booking:** pick tickets, enter details, pay via Stripe, get a QR code at the door
-- **Producer dashboard:** manage shows, see sales and attendance, read reviews, export the guest list
-
-The look leaned into the theatre of it all: deep purple and spotlight gold, a serif for the stage-y feeling, and a clean sans for the actual buttons.
+- A full user-flow map across discovery, booking, account, and support
+- Nine hand-sketched wireframes covering onboarding through booking
+- A greyscale wireframe pass for every core screen
+- A type and colour system built on Ragam's existing palette and two paired typefaces
+- High-fidelity UI for the core screens (trending, movie details, seat selection, contact)
+- A clickable Figma prototype across three flows: onboarding, the landing experience, and end-to-end movie booking
 
 <Gallery cols={3}>
-  <Figure alt="Discovery page" aspect="portrait" />
-  <Figure alt="Show detail page" aspect="portrait" />
-  <Figure alt="Producer dashboard" aspect="portrait" />
+  <Figure alt="Trending screen with movie posters" aspect="portrait" />
+  <Figure alt="Seat selection screen" aspect="portrait" />
+  <Figure alt="Contact page with theatre locations" aspect="portrait" />
 </Gallery>
 
 </Section>
 
-<Section eyebrow="05 · Impact" title="Traction">
+<Section eyebrow="05 · Impact" title="A complete prototype, not a shipped product">
 
-<Metrics>
-  <Metric value="50+" label="Shows in 3 months*" />
-  <Metric value="200+" label="Tickets sold in 6 months*" />
-  <Metric value="4.2/5" label="Average audience rating*" />
-</Metrics>
-
-Launched with 12 partner producers, who reported spending noticeably less time on show logistics, and audiences preferred the simplicity to Eventbrite's clutter. *(Starred figures come from the project writeup; confirm them before quoting in an interview.)*
+This was a college project. The final deliverable was a full UI system and a three-flow clickable prototype, not a published app, and Ragam Theatre never saw real usage numbers from it. What it did prove out, for the six of us and for me specifically on the UI and prototyping side, was a complete, coherent booking experience built around a real business with real constraints, instead of a hypothetical brief.
 
 </Section>
 
-<Section eyebrow="06 · Reflection" title="Remove the obstacles to the core action">
+<Section eyebrow="06 · Reflection" title="Designing inside someone else's identity">
 
-The best features are sometimes the ones you leave out. Every required field in the producer flow was a small wall, and taking the walls down got more shows listed. The hard part was never the producer side, it was building enough shows to make the audience side worth opening. And reviews quietly turned "is this any good?" into "here is what 47 people thought."
+Working from Ragam's actual colours and fonts instead of inventing a new identity was a useful constraint. It's easy to make a portfolio piece that looks impressive and generic, harder, and more useful, to make one thing feel like it belongs to a specific, real place. Splitting the work six ways also meant my job wasn't the whole product, it was making the flows the group agreed on feel real: the UI and a prototype someone could actually click through. That focus, owning one discipline well inside a team rather than touching everything shallowly, is something I'd carry into any team project since.
 
 </Section>
