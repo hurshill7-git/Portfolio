@@ -269,12 +269,7 @@ export function Step({
           {children}
         </p>
         {images.length > 0 && (
-          <div
-            className={cn(
-              "mt-4 grid max-w-xl gap-2 md:max-w-2xl",
-              images.length > 1 && "grid-cols-2",
-            )}
-          >
+          <div className="mt-4 flex max-w-xl flex-col gap-4 md:max-w-2xl">
             {images.map((img) => (
               <div
                 key={img.src}
