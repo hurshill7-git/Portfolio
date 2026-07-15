@@ -223,20 +223,34 @@ export function ProcessSteps({ children }: { children: React.ReactNode }) {
   );
 }
 
-/** One step of a <ProcessSteps> timeline. `n` is a two-digit label, e.g. "01". */
+/**
+ * One step of a <ProcessSteps> timeline. `n` is a two-digit label, e.g. "01".
+ * Takes an optional second screenshot (`image2`) for steps backed by more
+ * than one; MDX's JSX-attribute parser doesn't reliably pass array literals,
+ * so this uses two plain string props instead of `image: string[]`.
+ */
 export function Step({
   n,
   title,
   image,
   imageAlt,
+  image2,
+  image2Alt,
   children,
 }: {
   n: string;
   title: string;
   image?: string;
   imageAlt?: string;
+  image2?: string;
+  image2Alt?: string;
   children: React.ReactNode;
 }) {
+  const images = [
+    image && { src: image, alt: imageAlt ?? title },
+    image2 && { src: image2, alt: image2Alt ?? title },
+  ].filter((v): v is { src: string; alt: string } => Boolean(v));
+
   return (
     <RevealItem as="div" className="group relative flex gap-5 pb-8 last:pb-0">
       <span
@@ -254,9 +268,21 @@ export function Step({
         <p className="mt-1.5 text-base leading-relaxed text-ink-soft md:text-lg">
           {children}
         </p>
-        {image && (
-          <div className="mt-4 max-w-xl overflow-hidden rounded-lg border border-line md:max-w-2xl">
-            <MediaFrame src={image} alt={imageAlt ?? title} aspect="video" />
+        {images.length > 0 && (
+          <div
+            className={cn(
+              "mt-4 grid max-w-xl gap-2 md:max-w-2xl",
+              images.length > 1 && "grid-cols-2",
+            )}
+          >
+            {images.map((img) => (
+              <div
+                key={img.src}
+                className="overflow-hidden rounded-lg border border-line"
+              >
+                <MediaFrame src={img.src} alt={img.alt} aspect="video" />
+              </div>
+            ))}
           </div>
         )}
       </div>
