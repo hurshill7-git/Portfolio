@@ -37,11 +37,13 @@ So I treated it as a workflow problem. Instead of asking one tool to do everythi
 
 I designed the chain, ran every stage, and assembled the result by hand.
 
-1. Broke the transcript down into a sequence of image prompts, one per shot
-2. Generated the frames in Freepik Spaces, using Google's image generator for any shot with on-screen text so the words stayed legible
-3. Turned each frame into motion with Google Veo 3 and Grok, feeding the generator a first and last frame to control the shot
-4. Generated the voiceover with ElevenLabs
-5. Cut everything together in Premiere Pro, nudging clip pace up or down to lock the visuals to the voice
+<ProcessSteps>
+  <Step n="01" title="Broke down the transcript">Split it into a sequence of image prompts, one per shot.</Step>
+  <Step n="02" title="Generated the frames">Freepik Spaces produced the stills, using Google's image generator for any shot with on-screen text so the words stayed legible.</Step>
+  <Step n="03" title="Turned frames into motion">Google Veo 3 and Grok animated each frame, fed a first and last frame to control the shot.</Step>
+  <Step n="04" title="Generated the voiceover">ElevenLabs turned the script into narration.</Step>
+  <Step n="05" title="Cut it together">Assembled everything in Premiere Pro, nudging clip pace up or down to lock the visuals to the voice.</Step>
+</ProcessSteps>
 
 </Section>
 
