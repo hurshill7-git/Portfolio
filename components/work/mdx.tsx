@@ -1,7 +1,9 @@
+import { Children, isValidElement } from "react";
 import type { MDXComponents } from "mdx/types";
 import { MediaFrame } from "@/components/ui/MediaFrame";
 import { VideoEmbed } from "@/components/ui/VideoEmbed";
 import { RevealGroup, RevealItem } from "@/components/ui/Reveal";
+import { Carousel } from "@/components/work/Carousel";
 import { cn } from "@/lib/cn";
 
 /* ---- Case-study building blocks (usable inside MDX) ---------------- */
@@ -90,27 +92,65 @@ export function Artifacts({ children }: { children: React.ReactNode }) {
   return <div className="my-8 flex flex-col gap-8">{children}</div>;
 }
 
+/**
+ * `image` covers the single-screenshot case. For more than one, nest
+ * <StepImage> children instead (same reasoning as <Step>: MDX won't reliably
+ * pass an array-literal prop) — two or more render as an auto-advancing
+ * <Carousel> with arrows rather than stacking. `video` renders a silent,
+ * looping local clip (e.g. a converted screen-recording GIF) instead.
+ */
 export function Artifact({
   n,
   image,
   imageAlt,
+  video,
   children,
 }: {
   n: string;
   image?: string;
   imageAlt?: string;
+  video?: string;
   children: React.ReactNode;
 }) {
+  const textChildren: React.ReactNode[] = [];
+  const childImages: { src: string; alt: string }[] = [];
+  Children.forEach(children, (child) => {
+    if (isValidElement(child) && child.type === StepImage) {
+      const p = child.props as { src: string; alt: string };
+      childImages.push({ src: p.src, alt: p.alt ?? "Artifact screenshot" });
+    } else {
+      textChildren.push(child);
+    }
+  });
+
+  const images = [
+    image && { src: image, alt: imageAlt ?? "Artifact screenshot" },
+    ...childImages,
+  ].filter((v): v is { src: string; alt: string } => Boolean(v));
+
   return (
     <div className="flex gap-4 md:gap-5">
       <span className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-line-strong bg-paper font-mono text-xs text-accent">
         {n}
       </span>
       <div className="artifact-body min-w-0 flex-1">
-        {children}
-        {image && (
-          <div className="mt-4 max-w-xl overflow-hidden rounded-lg border border-line md:max-w-2xl">
-            <MediaFrame src={image} alt={imageAlt ?? "Artifact screenshot"} aspect="video" />
+        {textChildren}
+        {images.length > 1 && <Carousel images={images} />}
+        {images.length === 1 && (
+          <div className="mt-4 w-full overflow-hidden rounded-lg border border-line">
+            <MediaFrame src={images[0].src} alt={images[0].alt} aspect="video" />
+          </div>
+        )}
+        {video && (
+          <div className="mt-4 w-full overflow-hidden rounded-lg border border-line">
+            <video
+              src={video}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="block h-auto w-full"
+            />
           </div>
         )}
       </div>
@@ -224,10 +264,21 @@ export function ProcessSteps({ children }: { children: React.ReactNode }) {
 }
 
 /**
+ * One screenshot in a <Step>, authored as a child element rather than a
+ * prop — MDX's JSX-attribute parser doesn't reliably pass array literals,
+ * and a two-image step already needed a second `image2` prop, so any step
+ * needing three or more screenshots uses <StepImage> children instead.
+ * Renders nothing itself; <Step> reads its props directly off the element.
+ */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function StepImage(_props: { src: string; alt: string }) {
+  return null;
+}
+
+/**
  * One step of a <ProcessSteps> timeline. `n` is a two-digit label, e.g. "01".
- * Takes an optional second screenshot (`image2`) for steps backed by more
- * than one; MDX's JSX-attribute parser doesn't reliably pass array literals,
- * so this uses two plain string props instead of `image: string[]`.
+ * Takes an optional second screenshot (`image2`) for steps backed by two;
+ * for three or more, nest <StepImage> elements among the step's children.
  */
 export function Step({
   n,
@@ -246,9 +297,21 @@ export function Step({
   image2Alt?: string;
   children: React.ReactNode;
 }) {
+  const textChildren: React.ReactNode[] = [];
+  const childImages: { src: string; alt: string }[] = [];
+  Children.forEach(children, (child) => {
+    if (isValidElement(child) && child.type === StepImage) {
+      const p = child.props as { src: string; alt: string };
+      childImages.push({ src: p.src, alt: p.alt ?? title });
+    } else {
+      textChildren.push(child);
+    }
+  });
+
   const images = [
     image && { src: image, alt: imageAlt ?? title },
     image2 && { src: image2, alt: image2Alt ?? title },
+    ...childImages,
   ].filter((v): v is { src: string; alt: string } => Boolean(v));
 
   return (
@@ -265,9 +328,9 @@ export function Step({
       </span>
       <div className="min-w-0 flex-1 pt-1.5 transition-transform duration-300 ease-[var(--ease-out-expo)] group-hover:translate-x-1.5">
         <h4 className="font-display text-lg text-ink md:text-xl">{title}</h4>
-        <p className="mt-1.5 text-base leading-relaxed text-ink-soft md:text-lg">
-          {children}
-        </p>
+        <div className="step-body mt-1.5 text-base leading-relaxed text-ink-soft md:text-lg">
+          {textChildren}
+        </div>
         {images.length > 0 && (
           <div className="mt-4 flex max-w-xl flex-col gap-4 md:max-w-2xl">
             {images.map((img) => (
@@ -321,6 +384,7 @@ const components: MDXComponents = {
   Decision,
   ProcessSteps,
   Step,
+  StepImage,
   Metrics,
   Metric,
   h2: (props) => (

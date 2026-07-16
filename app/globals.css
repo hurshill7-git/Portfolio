@@ -193,6 +193,17 @@ body {
   }
 }
 
+/* Case-study <Carousel> progress line — the active segment fills left to
+   right over the auto-advance interval (components/work/Carousel.tsx). */
+@keyframes carousel-progress {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
 /* Focus ring — keyboard accessible */
 :where(a, button, input, textarea, [tabindex]):focus-visible {
   outline: 2px solid var(--accent);
@@ -234,6 +245,14 @@ body {
 /* Artifact rows: drop the auto-wrapped paragraph's default margin so the
    text sits flush against its numbered badge. */
 .artifact-body p {
+  margin: 0;
+}
+
+/* Process-step body: same reasoning as .artifact-body — MDX block-wraps a
+   step's description in its own <p> whenever it's authored on its own line
+   (rather than inline on the <Step> tag), so drop that paragraph's margin
+   rather than nesting a <p> inside .step-body's own <p>. */
+.step-body p {
   margin: 0;
 }
 
