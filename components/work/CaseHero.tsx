@@ -1,5 +1,5 @@
 import { Container } from "@/components/ui/Container";
-import { MediaFrame } from "@/components/ui/MediaFrame";
+import { ExpandableFrame } from "@/components/ui/ExpandableFrame";
 import { VideoEmbed } from "@/components/ui/VideoEmbed";
 import { Tag } from "@/components/ui/Tag";
 import type { Work } from "@/lib/work";
@@ -61,13 +61,13 @@ export function CaseHero({ work }: { work: Work }) {
         {work.video ? (
           <VideoEmbed videoId={work.video} title={`${work.title} video`} />
         ) : (
-          <MediaFrame
+          <ExpandableFrame
             src={work.cover || undefined}
             alt={`${work.title} cover`}
             aspect="wide"
             priority
             parallax
-            label={`${work.client ?? work.slug} — hero cover`}
+            label={`${work.client ?? work.slug} hero cover`}
             sizes="(min-width: 1216px) 1216px, 100vw"
           />
         )}

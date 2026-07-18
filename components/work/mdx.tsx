@@ -1,6 +1,6 @@
 import { Children, isValidElement } from "react";
 import type { MDXComponents } from "mdx/types";
-import { MediaFrame } from "@/components/ui/MediaFrame";
+import { ExpandableFrame } from "@/components/ui/ExpandableFrame";
 import { VideoEmbed } from "@/components/ui/VideoEmbed";
 import { RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import { Carousel } from "@/components/work/Carousel";
@@ -51,7 +51,7 @@ export function Figure({
 }) {
   return (
     <figure className={cn("my-10", bleed && "md:-mx-[6vw]")}>
-      <MediaFrame
+      <ExpandableFrame
         src={src}
         alt={alt}
         aspect={aspect}
@@ -138,7 +138,7 @@ export function Artifact({
         {images.length > 1 && <Carousel images={images} />}
         {images.length === 1 && (
           <div className="mt-4 w-full overflow-hidden rounded-lg border border-line">
-            <MediaFrame src={images[0].src} alt={images[0].alt} aspect="video" />
+            <ExpandableFrame src={images[0].src} alt={images[0].alt} aspect="video" />
           </div>
         )}
         {video && (
@@ -155,6 +155,41 @@ export function Artifact({
         )}
       </div>
     </div>
+  );
+}
+
+/**
+ * Contact sheet of small, silent autoplay/loop video clips shown together —
+ * e.g. one ad system rendered across several aspect ratios. Authored with
+ * child <GridVideo> elements (same "children over array props" convention as
+ * <StepImage>). Each clip shares a common height and lets width follow its
+ * own aspect ratio, so the row reads like a real-world contact sheet.
+ */
+export function VideoGrid({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="mt-4 flex w-full flex-wrap items-start justify-center gap-3 overflow-hidden rounded-lg border border-line bg-ink-bg p-4">
+      {children}
+    </div>
+  );
+}
+
+/**
+ * One clip in a <VideoGrid>. `aspect` is a CSS aspect-ratio value (e.g.
+ * "4/5", "9/16", "16/9") — set via inline style rather than a Tailwind
+ * class, since arbitrary per-item values can't be statically extracted by
+ * Tailwind's build-time class scanner.
+ */
+export function GridVideo({ src, aspect }: { src: string; aspect: string }) {
+  return (
+    <video
+      src={src}
+      autoPlay
+      loop
+      muted
+      playsInline
+      style={{ aspectRatio: aspect }}
+      className="h-40 rounded-md object-cover sm:h-48"
+    />
   );
 }
 
@@ -177,7 +212,7 @@ export function BeforeAfter({
         { label: "After", src: after, alt: afterAlt },
       ].map((c) => (
         <figure key={c.label}>
-          <MediaFrame src={c.src} alt={c.alt} aspect="video" />
+          <ExpandableFrame src={c.src} alt={c.alt} aspect="video" />
           <figcaption className="label mt-3">{c.label}</figcaption>
         </figure>
       ))}
@@ -338,7 +373,7 @@ export function Step({
                 key={img.src}
                 className="overflow-hidden rounded-lg border border-line"
               >
-                <MediaFrame src={img.src} alt={img.alt} aspect="video" />
+                <ExpandableFrame src={img.src} alt={img.alt} aspect="video" />
               </div>
             ))}
           </div>
@@ -378,6 +413,8 @@ const components: MDXComponents = {
   VideoEmbed,
   Artifacts,
   Artifact,
+  VideoGrid,
+  GridVideo,
   BeforeAfter,
   Callout,
   InPlainTerms,

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useReducedMotion } from "motion/react";
-import { MediaFrame } from "@/components/ui/MediaFrame";
+import { ExpandableFrame } from "@/components/ui/ExpandableFrame";
 import { cn } from "@/lib/cn";
 
 const AUTO_ADVANCE_MS = 4500;
@@ -38,7 +38,7 @@ export function Carousel({
 
   return (
     <div className="relative mt-4 w-full overflow-hidden rounded-lg border border-line">
-      <MediaFrame src={images[index].src} alt={images[index].alt} aspect="video" />
+      <ExpandableFrame src={images[index].src} alt={images[index].alt} aspect="video" />
       {images.length > 1 && (
         <>
           <button
