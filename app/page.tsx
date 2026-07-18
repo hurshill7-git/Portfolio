@@ -54,7 +54,7 @@ export default function HomePage() {
             </div>
           </div>
         </Container>
-        <BeyondCarousel items={beyond} />
+        <BeyondCarousel items={beyond} from="home" />
       </section>
 
       {/* Selected work */}

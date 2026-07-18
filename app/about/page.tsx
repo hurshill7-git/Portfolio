@@ -122,7 +122,7 @@ export default function AboutPage() {
             </h2>
           </Reveal>
         </Container>
-        <BeyondCarousel items={beyond} />
+        <BeyondCarousel items={beyond} from="about" />
       </section>
     </>
   );

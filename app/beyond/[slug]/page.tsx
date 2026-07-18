@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
-import Link from "next/link";
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import { MediaFrame } from "@/components/ui/MediaFrame";
+import { BeyondBackLink } from "@/components/about/BeyondBackLink";
 import { cn } from "@/lib/cn";
 import { beyond, getBeyondBySlug } from "@/lib/about";
 import { site } from "@/lib/site";
@@ -39,9 +40,9 @@ export default async function BeyondCategoryPage({
   return (
     <Container className="py-16 md:py-24">
       <Reveal>
-        <Link href="/about" className="label link-underline">
-          ← Back
-        </Link>
+        <Suspense fallback={<span className="label link-underline">← Back to about</span>}>
+          <BeyondBackLink />
+        </Suspense>
         <h1 className="mt-4 font-display text-4xl text-ink">{category.title}</h1>
       </Reveal>
 
