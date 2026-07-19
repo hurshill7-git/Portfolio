@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
@@ -12,11 +12,20 @@ import { ThemeToggle } from "@/components/layout/ThemeToggle";
 export function Nav() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const [open, setOpen] = useState(false);
   const [lastPath, setLastPath] = useState(pathname);
+  const lastY = useRef(0);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 16);
+    lastY.current = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 16);
+      // Hide on scroll down past the header, reveal on scroll up.
+      setHidden(y > lastY.current && y > 120);
+      lastY.current = y;
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -29,7 +38,12 @@ export function Nav() {
   }
 
   return (
-    <header className="sticky top-0 z-50 px-4 pt-4 sm:px-6 sm:pt-6">
+    <header
+      className={cn(
+        "sticky top-0 z-50 px-4 pt-4 transition-transform duration-300 ease-out sm:px-6 sm:pt-6",
+        hidden && !open ? "-translate-y-[150%]" : "translate-y-0",
+      )}
+    >
       <nav
         className={cn(
           "container-x flex h-16 items-center justify-between rounded-2xl border transition-colors duration-300",
