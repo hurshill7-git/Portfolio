@@ -164,7 +164,7 @@ export function BeyondCarousel({
 }
 
 function BeyondCard({ item, from }: { item: BeyondItem; from: "home" | "about" }) {
-  const cover = item.images[0]?.src;
+  const cover = item.cover ?? item.images[0]?.src;
 
   return (
     <Link

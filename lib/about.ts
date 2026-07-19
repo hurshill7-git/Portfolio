@@ -16,6 +16,8 @@ export type BeyondCategory = {
   slug: string;
   title: string;
   kind: string;
+  /** Card-thumbnail image for the homepage/about carousel. Falls back to images[0] if unset. */
+  cover?: string;
   /** Images under public/beyond/<slug>/, in display order, at their real dimensions. */
   images: BeyondImage[];
   /** "stack" (default) — full-width, one below another. "grid" — for many small individual tiles. */
@@ -28,6 +30,7 @@ export const beyond: BeyondCategory[] = [
     slug: "ux-ui",
     title: "UX & UI",
     kind: "UX/UI",
+    cover: "/beyond/ux-ui/cover.png",
     images: Array.from({ length: 19 }, (_, i) => ({
       src: `/beyond/ux-ui/${String(i + 1).padStart(2, "0")}.png`,
       width: 1962,
@@ -38,6 +41,7 @@ export const beyond: BeyondCategory[] = [
     slug: "web-design",
     title: "Web Design",
     kind: "Web",
+    cover: "/beyond/web-design/cover.png",
     images: [
       { src: "/beyond/web-design/01.png", width: 1440, height: 8782 },
       { src: "/beyond/web-design/02.png", width: 1440, height: 7912 },
@@ -47,6 +51,7 @@ export const beyond: BeyondCategory[] = [
     slug: "mobile-design",
     title: "Mobile Design",
     kind: "Mobile",
+    cover: "/beyond/mobile-design/cover.png",
     images: Array.from({ length: 12 }, (_, i) => ({
       src: `/beyond/mobile-design/${String(i + 1).padStart(2, "0")}.png`,
       width: 1962,
@@ -57,6 +62,7 @@ export const beyond: BeyondCategory[] = [
     slug: "branding",
     title: "Branding",
     kind: "Brand",
+    cover: "/beyond/branding/cover.png",
     images: [
       1101, 1106, 1106, 1106, 1106, 1103, 1103, 1101, 1101, 1101, 1101, 1101,
       1101, 1101, 1101, 1101, 1101, 1101, 1101, 1101, 1101, 1101, 1101, 1101,
@@ -70,24 +76,28 @@ export const beyond: BeyondCategory[] = [
     slug: "static-creative",
     title: "Static Creative",
     kind: "Static",
+    cover: "/beyond/static-creative/cover.png",
     images: [{ src: "/beyond/static-creative/01.png", width: 963, height: 3937 }],
   },
   {
     slug: "photography",
     title: "Photography",
     kind: "Photo",
+    cover: "/beyond/photography/cover.png",
     images: [{ src: "/beyond/photography/01.png", width: 966, height: 3603 }],
   },
   {
     slug: "artworks",
     title: "Artworks",
     kind: "Art",
+    cover: "/beyond/artworks/cover.png",
     images: [{ src: "/beyond/artworks/01.png", width: 966, height: 2552 }],
   },
   {
     slug: "logo-design",
     title: "Logo Design",
     kind: "Logo",
+    cover: "/beyond/logo-design/cover.png",
     images: Array.from({ length: 6 }, (_, i) => ({
       src: `/beyond/logo-design/${String(i + 1).padStart(2, "0")}.png`,
       width: 1962,
@@ -99,6 +109,7 @@ export const beyond: BeyondCategory[] = [
     title: "Expressive Typography",
     kind: "Type",
     layout: "grid",
+    cover: "/beyond/expressive-typography/cover.png",
     images: [177, 182, 177, 177, 177, 177, 177, 177, 177].map((height, i) => ({
       src: `/beyond/expressive-typography/${String(i + 1).padStart(2, "0")}.png`,
       width: 307,
@@ -109,6 +120,7 @@ export const beyond: BeyondCategory[] = [
     slug: "3d-design",
     title: "3D Design",
     kind: "3D",
+    cover: "/beyond/3d-design/cover.png",
     images: [{ src: "/beyond/3d-design/01.png", width: 929, height: 1163 }],
   },
 ];
