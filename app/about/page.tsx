@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
-import { MediaFrame } from "@/components/ui/MediaFrame";
+import { ExpandableFrame } from "@/components/ui/ExpandableFrame";
 import { BeyondCarousel } from "@/components/about/BeyondCarousel";
 import { bio, beyond } from "@/lib/about";
 import { experience, skillGroups } from "@/lib/resume";
@@ -45,10 +45,11 @@ export default function AboutPage() {
 
           <div className="md:col-span-5">
             <Reveal delay={0.1}>
-              <MediaFrame
+              <ExpandableFrame
                 src="/profile-styled.png"
                 alt={`Portrait of ${site.name}`}
                 aspect="portrait"
+                revealOn="container"
                 sizes="(min-width: 768px) 40vw, 100vw"
               />
             </Reveal>

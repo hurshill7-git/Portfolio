@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
-import { MediaFrame } from "@/components/ui/MediaFrame";
+import { ExpandableFrame, ImageZoom } from "@/components/ui/ExpandableFrame";
 import { BeyondBackLink } from "@/components/about/BeyondBackLink";
 import { cn } from "@/lib/cn";
 import { beyond, getBeyondBySlug } from "@/lib/about";
@@ -57,25 +57,27 @@ export default async function BeyondCategoryPage({
         >
           {category.images.map((img) => (
             <RevealItem key={img.src}>
-              <Image
-                src={img.src}
-                alt={`${category.title} work sample`}
-                width={img.width}
-                height={img.height}
-                sizes={
-                  category.layout === "grid"
-                    ? "(min-width: 640px) 33vw, 50vw"
-                    : "(min-width: 1280px) 1216px, 100vw"
-                }
-                quality={100}
-                className="block h-auto w-full"
-              />
+              <ImageZoom src={img.src} alt={`${category.title} work sample`} revealOn="container">
+                <Image
+                  src={img.src}
+                  alt={`${category.title} work sample`}
+                  width={img.width}
+                  height={img.height}
+                  sizes={
+                    category.layout === "grid"
+                      ? "(min-width: 640px) 33vw, 50vw"
+                      : "(min-width: 1280px) 1216px, 100vw"
+                  }
+                  quality={100}
+                  className="block h-auto w-full"
+                />
+              </ImageZoom>
             </RevealItem>
           ))}
         </RevealGroup>
       ) : (
         <Reveal delay={0.05} className="mt-12 md:mt-16">
-          <MediaFrame
+          <ExpandableFrame
             alt={category.title}
             aspect="wide"
             label={`${category.title}: add visuals`}

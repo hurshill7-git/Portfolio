@@ -56,6 +56,7 @@ export function Figure({
         alt={alt}
         aspect={aspect}
         parallax
+        revealOn="container"
         sizes="(min-width: 768px) 90vw, 100vw"
       />
       {caption && (
@@ -138,7 +139,7 @@ export function Artifact({
         {images.length > 1 && <Carousel images={images} />}
         {images.length === 1 && (
           <div className="mt-4 w-full overflow-hidden rounded-lg border border-line">
-            <ExpandableFrame src={images[0].src} alt={images[0].alt} aspect="video" />
+            <ExpandableFrame src={images[0].src} alt={images[0].alt} aspect="video" revealOn="container" />
           </div>
         )}
         {video && (
@@ -212,7 +213,7 @@ export function BeforeAfter({
         { label: "After", src: after, alt: afterAlt },
       ].map((c) => (
         <figure key={c.label}>
-          <ExpandableFrame src={c.src} alt={c.alt} aspect="video" />
+          <ExpandableFrame src={c.src} alt={c.alt} aspect="video" revealOn="container" />
           <figcaption className="label mt-3">{c.label}</figcaption>
         </figure>
       ))}
@@ -373,7 +374,7 @@ export function Step({
                 key={img.src}
                 className="overflow-hidden rounded-lg border border-line"
               >
-                <ExpandableFrame src={img.src} alt={img.alt} aspect="video" />
+                <ExpandableFrame src={img.src} alt={img.alt} aspect="video" revealOn="container" />
               </div>
             ))}
           </div>

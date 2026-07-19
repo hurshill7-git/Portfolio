@@ -38,7 +38,7 @@ export function Carousel({
 
   return (
     <div className="relative mt-4 w-full overflow-hidden rounded-lg border border-line">
-      <ExpandableFrame src={images[index].src} alt={images[index].alt} aspect="video" />
+      <ExpandableFrame src={images[index].src} alt={images[index].alt} aspect="video" revealOn="container" />
       {images.length > 1 && (
         <>
           <button

@@ -4,6 +4,7 @@ import { useEffect, useState, type ComponentProps } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { MediaFrame } from "@/components/ui/MediaFrame";
+import { cn } from "@/lib/cn";
 
 type MediaFrameProps = ComponentProps<typeof MediaFrame>;
 
@@ -14,20 +15,65 @@ type MediaFrameProps = ComponentProps<typeof MediaFrame>;
  * non-interactive usages don't get pulled into a client bundle just because
  * a handful of case-study images want to be zoomable.
  */
-export function ExpandableFrame(props: MediaFrameProps) {
-  const [open, setOpen] = useState(false);
+export function ExpandableFrame({
+  revealOn = "self",
+  ...props
+}: MediaFrameProps & { revealOn?: "self" | "container" }) {
   const { src, alt } = props;
+  return (
+    <ImageZoom src={src} alt={alt} revealOn={revealOn}>
+      <MediaFrame {...props} />
+    </ImageZoom>
+  );
+}
+
+/**
+ * Generic expand-to-lightbox wrapper for any image content, not just
+ * <MediaFrame>'s cropped aspect boxes — e.g. a plain <Image> shown at its
+ * own natural dimensions. `src`/`alt` point the lightbox at the full image;
+ * `children` is whatever's already being rendered in place.
+ *
+ * `revealOn` controls how the corner button becomes visible on hover-capable
+ * devices: "self" (default) only on hovering the small button itself — used
+ * for card thumbnails, where the image's whole point is "click to navigate"
+ * and a bold always-discoverable zoom affordance would compete with that.
+ * "container" reveals it on hovering anywhere over the image — used for
+ * case-study body content, where the image *is* the point and a button
+ * findable only by first stumbling onto its exact 36px hotspot is no button
+ * at all in practice.
+ */
+export function ImageZoom({
+  src,
+  alt,
+  revealOn = "self",
+  children,
+}: {
+  src?: string;
+  alt: string;
+  revealOn?: "self" | "container";
+  children: React.ReactNode;
+}) {
+  const [open, setOpen] = useState(false);
 
   return (
-    <div className="relative">
-      <MediaFrame {...props} />
+    <div className={cn("relative", revealOn === "container" && "group/zoom")}>
+      {children}
       {src && (
         <>
           <button
             type="button"
             aria-label="Expand image"
-            onClick={() => setOpen(true)}
-            className="absolute right-3 top-3 z-10 flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-ink-bg/70 text-paper-on-ink backdrop-blur-sm transition-opacity duration-200 [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:hover:opacity-100 [@media(hover:hover)]:focus-visible:opacity-100"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setOpen(true);
+            }}
+            className={cn(
+              "absolute right-3 top-3 z-10 flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-ink-bg/70 text-paper-on-ink backdrop-blur-sm transition-opacity duration-200 [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:focus-visible:opacity-100",
+              revealOn === "container"
+                ? "[@media(hover:hover)]:group-hover/zoom:opacity-100"
+                : "[@media(hover:hover)]:hover:opacity-100",
+            )}
           >
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M21 16v3a2 2 0 0 1-2 2h-3M8 21H5a2 2 0 0 1-2-2v-3" />
@@ -82,7 +128,10 @@ function Lightbox({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: reduce ? 0 : 0.2 }}
-          onClick={onClose}
+          onClick={(e) => {
+            e.stopPropagation();
+            onClose();
+          }}
           className="fixed inset-0 z-[200] flex items-center justify-center bg-ink-bg/95 p-6 backdrop-blur-sm md:p-12"
         >
           <motion.img
@@ -98,7 +147,11 @@ function Lightbox({
           <button
             type="button"
             aria-label="Close"
-            onClick={onClose}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              onClose();
+            }}
             className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-ink-bg/70 text-paper-on-ink backdrop-blur-sm transition-colors hover:bg-ink-bg"
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

@@ -4,7 +4,7 @@ import { Container } from "@/components/ui/Container";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import { ScrollTextReveal } from "@/components/interactions/ScrollTextReveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { MediaFrame } from "@/components/ui/MediaFrame";
+import { ExpandableFrame } from "@/components/ui/ExpandableFrame";
 import { ProjectCard } from "@/components/work/ProjectCard";
 import { Testimonials } from "@/components/home/Testimonials";
 import { ScrollMilestone } from "@/components/home/ScrollMilestone";
@@ -31,10 +31,11 @@ export default function HomePage() {
                 <p className="label">About</p>
               </Reveal>
               <Reveal delay={0.1} className="mt-8">
-                <MediaFrame
+                <ExpandableFrame
                   src="/profile-styled.png"
                   alt={`Portrait of ${site.name}`}
                   aspect="portrait"
+                  revealOn="container"
                   sizes="(min-width: 768px) 25vw, 60vw"
                 />
               </Reveal>
