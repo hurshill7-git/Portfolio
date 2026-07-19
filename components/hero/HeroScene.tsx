@@ -10,6 +10,10 @@ import type { Mesh } from "three";
  * A slowly morphing, softly-lit form — the hero's immersive set-piece.
  * Animation is paused under prefers-reduced-motion (renders a static object).
  * This module is only ever loaded client-side via next/dynamic(ssr:false).
+ * Geometry detail is kept modest (10, ~7k vertices) rather than the 24
+ * (~37k vertices) it was authored with — indistinguishable once distorted
+ * and lit, but noticeably lighter on the per-frame vertex shader cost,
+ * which matters most on mobile GPUs.
  */
 function Blob({ animate }: { animate: boolean }) {
   const ref = useRef<Mesh>(null);
@@ -27,7 +31,7 @@ function Blob({ animate }: { animate: boolean }) {
       floatIntensity={animate ? 0.8 : 0}
     >
       <mesh ref={ref} scale={2.2}>
-        <icosahedronGeometry args={[1, 24]} />
+        <icosahedronGeometry args={[1, 10]} />
         <MeshDistortMaterial
           color="#d9442a"
           emissive="#7a1f12"
@@ -42,7 +46,7 @@ function Blob({ animate }: { animate: boolean }) {
   );
 }
 
-export default function HeroScene() {
+export default function HeroScene({ onReady }: { onReady?: () => void }) {
   const reduce = useReducedMotion();
   const animate = !reduce;
 
@@ -52,6 +56,7 @@ export default function HeroScene() {
       dpr={[1, 2]}
       gl={{ antialias: true, alpha: true }}
       frameloop={animate ? "always" : "demand"}
+      onCreated={() => onReady?.()}
       aria-hidden="true"
     >
       <ambientLight intensity={0.6} />

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import {
@@ -29,6 +29,7 @@ const line: Variants = {
 export function Hero() {
   const reduce = useReducedMotion();
   const sectionRef = useRef<HTMLElement>(null);
+  const [sceneReady, setSceneReady] = useState(false);
 
   // Scroll progress across the hero; spring-smoothed for a fluid drift.
   const { scrollYProgress } = useScroll({
@@ -56,7 +57,24 @@ export function Hero() {
         className="pointer-events-none absolute inset-0 opacity-90"
         style={reduce ? undefined : { y: bgY, scale: bgScale }}
       >
-        <HeroScene />
+        {/* Instant CSS placeholder — the 3D scene's JS chunk (three.js +
+            fiber + drei) only starts fetching after hydration, so this
+            fills the gap immediately rather than leaving blank space.
+            Cross-fades out once the real WebGL scene reports it's ready. */}
+        <div
+          className="absolute inset-0 flex items-center justify-center transition-opacity duration-700 ease-out"
+          style={{ opacity: sceneReady ? 0 : 1 }}
+          aria-hidden="true"
+        >
+          <div
+            className="h-[42vmin] w-[42vmin] rounded-full blur-3xl motion-safe:animate-pulse"
+            style={{
+              background:
+                "radial-gradient(circle at 35% 30%, var(--accent), transparent 70%)",
+            }}
+          />
+        </div>
+        <HeroScene onReady={() => setSceneReady(true)} />
       </motion.div>
       <div
         className="pointer-events-none absolute inset-0"
