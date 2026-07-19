@@ -7,6 +7,15 @@
 set -uo pipefail
 cd "$(dirname "$0")/.."
 
+if ! command -v npm >/dev/null 2>&1; then
+  for candidate in "/c/Program Files/nodejs" "/c/Program Files (x86)/nodejs"; do
+    if [ -x "$candidate/npm" ] || [ -f "$candidate/npm.cmd" ]; then
+      export PATH="$candidate:$PATH"
+      break
+    fi
+  done
+fi
+
 BUILD_LOG="$(mktemp)"
 if ! npm run build > "$BUILD_LOG" 2>&1; then
   echo "em-dash check: build failed, cannot verify rendered output." >&2
