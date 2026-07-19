@@ -29,15 +29,15 @@ export function Nav() {
   }
 
   return (
-    <header
-      className={cn(
-        "sticky top-0 z-50 transition-colors duration-300",
-        scrolled
-          ? "border-b border-line bg-paper/80 backdrop-blur-md"
-          : "border-b border-transparent",
-      )}
-    >
-      <nav className="container-x flex h-16 items-center justify-between">
+    <header className="sticky top-0 z-50 px-4 pt-4 sm:px-6 sm:pt-6">
+      <nav
+        className={cn(
+          "container-x flex h-16 items-center justify-between rounded-2xl border transition-colors duration-300",
+          scrolled
+            ? "border-line bg-paper/80 shadow-sm backdrop-blur-md"
+            : "border-line/60 bg-paper/60 backdrop-blur-md",
+        )}
+      >
         <Link
           href="/"
           className="font-display text-lg tracking-tight text-ink"
@@ -118,9 +118,9 @@ export function Nav() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: EASE_OUT_EXPO }}
-            className="overflow-hidden border-b border-line bg-paper md:hidden"
+            className="mt-2 overflow-hidden rounded-2xl border border-line bg-paper shadow-sm md:hidden"
           >
-            <ul className="container-x flex flex-col gap-1 py-4">
+            <ul className="flex flex-col gap-1 px-6 py-4">
               {nav.map((item) => (
                 <li key={item.href}>
                   <Link

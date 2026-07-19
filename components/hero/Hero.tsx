@@ -49,7 +49,7 @@ export function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden bg-ink-bg text-paper-on-ink"
+      className="relative -mt-20 overflow-hidden bg-ink-bg text-paper-on-ink sm:-mt-[5.5rem]"
     >
       {/* Immersive backdrop */}
       <motion.div
