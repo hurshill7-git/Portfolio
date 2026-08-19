@@ -19,7 +19,7 @@ export type Experience = {
 
 export const experience: Experience[] = [
   {
-    role: "UI & Visual Designer",
+    role: "UX Designer",
     org: "314e Corp",
     period: "2023 to Present",
     location: "Bangalore, India",
