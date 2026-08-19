@@ -5,7 +5,7 @@
 export const site = {
   name: "Harshil Malakar",
   shortName: "Harshil",
-  role: "Experience Designer",
+  role: "Product Designer",
   // One-liner used in hero + meta description.
   tagline:
     "A designer who builds across product, brand, motion, and 3D, taking the whole experience from first idea to shipped.",
@@ -15,7 +15,6 @@ export const site = {
   url: "https://harshil-malakar.vercel.app",
   socials: {
     linkedin: "https://www.linkedin.com/in/harshill7/",
-    behance: "https://www.behance.net/hurshill",
     framer: "https://harshill.framer.website",
   },
 } as const;

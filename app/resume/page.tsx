@@ -24,7 +24,6 @@ const contactLinks = [
   { label: "Phone", value: site.phone, href: `tel:${site.phone.replace(/\s/g, "")}` },
   { label: "Portfolio", value: site.url.replace(/^https?:\/\//, ""), href: site.url },
   { label: "LinkedIn", value: "in/harshill7", href: site.socials.linkedin },
-  { label: "Behance", value: "behance.net/hurshill", href: site.socials.behance },
 ];
 
 export default function ResumePage() {

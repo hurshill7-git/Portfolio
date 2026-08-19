@@ -4,7 +4,7 @@
  */
 
 export const resumeSummary =
-  "Product designer with 3+ years turning complex, high-stakes software (mostly healthcare) into something people can actually use without a manual. I live in user flows, interaction patterns, and design systems, and I do my best work shoulder to shoulder with PMs and engineers. Lately I also build the AI-assisted tools and video pipelines that make the work ship faster. I came up through visual, brand, photography, and film, so I am just as comfortable in a Figma file as I am behind a camera or in code.";
+  "Product designer with 4 years of experience turning complex, high-stakes software (mostly healthcare) into something people can actually use without a manual. I live in user flows, interaction patterns, and design systems, and I do my best work shoulder to shoulder with PMs and engineers. Lately I also build the AI-assisted tools and video pipelines that make the work ship faster. Outside of work, photography and film are still a hobby of mine, keeping me just as comfortable behind a camera as I am in a Figma file or in code.";
 
 export type Experience = {
   role: string;
@@ -26,14 +26,14 @@ export const experience: Experience[] = [
     summary:
       "Product UX, design systems, and brand for enterprise healthcare software, plus internal AI tools, automated video pipelines, and event experiences.",
     bullets: [
-      "Designed user flows, wireframes, and high-fidelity interfaces for enterprise healthcare platforms (ZSegment, Jeeves, Veritable), balancing usability, accessibility, and real business constraints.",
+      "Designed user flows, wireframes, and high-fidelity interfaces for high-stakes healthcare tools, balancing usability, accessibility, and real business constraints.",
       "Led end-to-end redesigns of dense data tools, turning expert-only screens into systems a new operator could navigate on day one. ZSegment now runs in production across 8 health systems.",
       "Built and manage 314e's product design system on top of Ant Design, applying color theory and core visual design principles (hierarchy, contrast, rhythm, accessibility) to define component behavior, interaction states, and a consistent visual language across products.",
-      "Created the full Jeeves brand guidelines from scratch, logo, color palette, typography, 40+ custom icons, and motion principles, now the reference system for every Jeeves touchpoint.",
+      "Created the full Jeeves brand guidelines from scratch, including logo, color palette, typography, and a 40+ icon set, then translated them into a consistent UI pattern library and design system used across every Jeeves touchpoint.",
       "Led product-explainer and onboarding experiences, including 15+ in-product tutorials, to improve feature discoverability and cut support confusion.",
-      "Built internal AI-assisted tools that turned hours of manual deck and chart work into minutes, adopted across the sales team with no mandate.",
-      "Designed and built video-production pipelines that cut explainer-video turnaround from three weeks to one (3x faster): a script-and-Figma-to-render motion system with word-synced ElevenLabs voiceover, plus a generative pipeline (Freepik, Veo 3, Grok, Premiere) that produces cinematic product videos in about three days.",
-      "Designed AR and exhibition experiences for global healthcare events, including the 314e booth at HIMSS 2026.",
+      "Designed and built internal AI-assisted tools with simple, self-serve UX that turned hours of manual deck and chart work into minutes, adopted across the sales team with no mandate.",
+      "Designed the end-to-end workflow and UX for video-production pipelines that cut product explainer-video turnaround from three weeks to one (3x faster): a script-and-Figma-to-render motion system with word-synced ElevenLabs voiceover, plus a generative pipeline (Freepik, Veo 3, Grok, Premiere) that produces cinematic product videos in about three days.",
+      "Designed the user experience for AR and exhibition installations at global healthcare events, including the 314e booth at HIMSS 2026.",
     ],
   },
   {
@@ -46,29 +46,6 @@ export const experience: Experience[] = [
       "Designed art memes, promo ads, and brand video bites for major clients including Flipkart, Truecaller, and OkCupid.",
       "Created scroll-stopping visual content built for social and meme-marketing campaigns.",
       "Worked with content and strategy teams to keep every visual on brand and on goal.",
-    ],
-  },
-  {
-    role: "Studio Intern",
-    org: "Campus Sutra",
-    period: "Internship · Jun – Aug 2022",
-    summary:
-      "Studio product photography and cinematic social videos for Campus Sutra and its sister brands.",
-    bullets: [
-      "Assisted senior photographers on e-commerce, platform, and creative shoots for Campus Sutra and sister brands including Sohi, Via Tokyo, Blnce, Haute Sauce, and Bon Homie.",
-      "Learned studio lighting and metering for e-commerce-ready product shots across categories from jewelry to home decor.",
-      "Shot and edited cinematic short-form videos for social media, from concept through post-production.",
-    ],
-  },
-  {
-    role: "Freelance Cinematic Creator",
-    org: "Various clients",
-    period: "Freelance",
-    summary:
-      "Directed and shot cinematic promos for gyms, salons, and lifestyle brands.",
-    bullets: [
-      "Directed and shot cinematic promos for gyms, salons, and lifestyle brands, handling everything from the lighting setup to the final color grade.",
-      "Delivered crisp edits and photos clients love posting (and their followers love sharing).",
     ],
   },
 ];
@@ -133,10 +110,14 @@ export const skillGroups: { group: string; items: string[] }[] = [
       "Figma",
       "Ant Design",
       "Adobe Creative Suite",
-      "Premiere Pro",
       "ElevenLabs",
       "Spline",
       "Framer",
+      "VS Code",
+      "Claude Code",
+      "Claude Design",
+      "Hyperframes",
+      "Remotion",
     ],
   },
 ];

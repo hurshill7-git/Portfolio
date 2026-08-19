@@ -3,7 +3,6 @@ import { nav, site } from "@/lib/site";
 
 const socialLinks = [
   { label: "LinkedIn", href: site.socials.linkedin },
-  { label: "Behance", href: site.socials.behance },
   { label: "Email", href: `mailto:${site.email}` },
 ];
 
