@@ -8,12 +8,10 @@ import { ExpandableFrame } from "@/components/ui/ExpandableFrame";
 import { ProjectCard } from "@/components/work/ProjectCard";
 import { Testimonials } from "@/components/home/Testimonials";
 import { ScrollMilestone } from "@/components/home/ScrollMilestone";
-import { BeyondCarousel } from "@/components/about/BeyondCarousel";
 import { Tag } from "@/components/ui/Tag";
 import { Button } from "@/components/ui/Button";
 import { getFeaturedWork } from "@/lib/work";
 import { site, toolkit } from "@/lib/site";
-import { beyond } from "@/lib/about";
 
 export default function HomePage() {
   const featured = getFeaturedWork();
@@ -55,7 +53,6 @@ export default function HomePage() {
             </div>
           </div>
         </Container>
-        <BeyondCarousel items={beyond} from="home" />
       </section>
 
       {/* Selected work */}
