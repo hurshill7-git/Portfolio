@@ -95,20 +95,9 @@ export const skillGroups: { group: string; items: string[] }[] = [
     ],
   },
   {
-    group: "Camera & motion",
-    items: [
-      "Product photography",
-      "Creative & conceptual photography",
-      "Motion design",
-      "Video editing",
-      "Meme & trend-driven content",
-    ],
-  },
-  {
     group: "Tools",
     items: [
       "Figma",
-      "Ant Design",
       "Adobe Creative Suite",
       "ElevenLabs",
       "Spline",
