@@ -15,7 +15,9 @@ import { site } from "@/lib/site";
 import { EASE_OUT_EXPO } from "@/lib/motion";
 
 // 3D scene is client-only and kept off the critical path.
-const HeroScene = dynamic(() => import("./HeroScene"), { ssr: false });
+const ParticleSphere = dynamic(() => import("./ParticleSphere"), {
+  ssr: false,
+});
 
 const line: Variants = {
   hidden: { opacity: 0, y: 28 },
@@ -74,7 +76,17 @@ export function Hero() {
             }}
           />
         </div>
-        <HeroScene onReady={() => setSceneReady(true)} />
+        <ParticleSphere
+          onReady={() => setSceneReady(true)}
+          sphereColor="#FC5100"
+          particlesCount={4120}
+          particleScale={1}
+          scale={4}
+          speed={20}
+          cursorRadiusUI={270}
+          cursorStrengthUI={2}
+          clickForce={10}
+        />
       </motion.div>
       <div
         className="pointer-events-none absolute inset-0"
@@ -84,8 +96,10 @@ export function Hero() {
         }}
       />
 
+      {/* pointer-events-none so empty space here doesn't block the particle
+          sphere behind it — the two CTAs opt back in with pointer-events-auto. */}
       <motion.div
-        className="container-x relative flex min-h-[88vh] flex-col justify-end pb-16 pt-32 md:min-h-[92vh] md:pb-24"
+        className="container-x relative flex min-h-[88vh] flex-col justify-end pb-16 pt-32 pointer-events-none md:min-h-[92vh] md:pb-24"
         style={reduce ? undefined : { y: fgY, opacity: fgOpacity }}
       >
         <motion.p
@@ -127,7 +141,7 @@ export function Hero() {
             <Link
               href="/work"
               data-cursor="cta"
-              className="rounded-full bg-paper px-6 py-3 text-sm font-medium text-ink transition-colors hover:bg-accent hover:text-paper"
+              className="pointer-events-auto rounded-full bg-paper px-6 py-3 text-sm font-medium text-ink transition-colors hover:bg-accent hover:text-paper"
             >
               View selected work
             </Link>
@@ -136,7 +150,7 @@ export function Hero() {
               target="_blank"
               rel="noopener noreferrer"
               data-cursor="cta"
-              className="link-underline text-sm text-paper-on-ink"
+              className="pointer-events-auto link-underline text-sm text-paper-on-ink"
             >
               Get in touch
             </a>
