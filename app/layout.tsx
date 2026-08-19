@@ -5,6 +5,7 @@ import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
 import { CustomCursor } from "@/components/interactions/CustomCursor";
 import { ConsoleGreeting } from "@/components/interactions/ConsoleGreeting";
+import { MouseEffects } from "@/components/interactions/MouseEffects";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -86,6 +87,7 @@ export default function RootLayout({
         <Footer />
         <CustomCursor />
         <ConsoleGreeting />
+        <MouseEffects />
         <Analytics />
       </body>
     </html>
